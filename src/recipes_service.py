@@ -26,6 +26,10 @@ class RecipesService:
         """ Returns all recipes from the database """
         return dumps(self.collection.find())
 
+    def get_all_names(self) -> str:
+        """ Returns all names of recipes from the database """
+        return dumps(self.collection.find({}, {"name": 1, "_id": 0}))
+
     def get_all_by_name(self, name) -> str:
         """ Returns all recipes with given name """
         return dumps(self.collection.find({"name": name}))
@@ -38,21 +42,13 @@ class RecipesService:
         """ Returns all recipes with given ingredient """
         return dumps(self.collection.find({"ingredients": ingredient}))
 
-    def add_new(self, recipe) -> bool:
-        """
-        Adds new recipe to the database
-        :param recipe:
-        :return:
-        """
-        if self.get_all_by_name(recipe["name"]) != "[]":
-            return False
-        if self.insert_one(recipe) is None:
-            return True
-
     def insert_one(self, data):
         """ Inserts one recipe to the database """
-        data = dict(data)
-        return self.collection.insert_one(data)
+        try:
+            data = dict(data)
+            return self.collection.insert_one(data)
+        except pymongo.errors.DuplicateKeyError:
+            print("Recipe already exists in the database")
 
     def update_one(self, id, data):
         """ Updates one recipe in the database """
@@ -61,3 +57,7 @@ class RecipesService:
     def delete_one(self, id):
         """ Deletes one recipe from the database """
         return self.collection.delete_one({"_id": ObjectId(id)})
+
+    def delete_all(self):
+        """ Deletes all recipes from the database """
+        return self.collection.delete_many({})

@@ -1,8 +1,8 @@
-from src.crawler import Crawler
-from src.recipes_service import RecipesService
+from src.recipes_controller import RecipesController
 
 if __name__ == '__main__':
     """ The main function """
-    database_service = RecipesService()
-    crawler = Crawler("https://www.fitczarodziejka.pl/przepisy")
-    crawler.crawl()
+    controller = RecipesController()
+    print(controller.check_connection())
+    print(controller.get_names_of_recipes())
+    print(controller.get_recipes_by_tag('zupa'))

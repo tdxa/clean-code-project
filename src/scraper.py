@@ -37,22 +37,26 @@ class Scraper:
         ingredients = [ingredient.text for ingredient in ingredients]
         return [ingredient.split(" ", 1) for ingredient in ingredients]
 
-    # TODO - optimize this method
     def get_nutritional_values(self) -> dict[str, Any]:
         """
         Returns all nutritional values of the recipe
         :return: dict of nutritional values
         """
-        nutritional_values_container = self.soup.find("table", {"class": "nutritionalValues"})
-        calories = nutritional_values_container.find_all("tr", {"data-test": "recipeDetail__calorieCount"})
+        nv_container = self.soup.find("table", {"class": "nutritionalValues"})
+
+        calories = nv_container.find_all("tr", {"data-test": "recipeDetail__calorieCount"})
         calories = calories[0].find_all("td")[1].text
-        carbohydrates = nutritional_values_container.find_all("tr", {"data-test": "recipeDetail__carbohydrateCount"})
+
+        carbohydrates = nv_container.find_all("tr", {"data-test": "recipeDetail__carbohydrateCount"})
         carbohydrates = carbohydrates[0].find_all("td")[1].text
-        fiber = nutritional_values_container.find_all("tr", {"data-test": "recipeDetail__fiberCount"})
+
+        fiber = nv_container.find_all("tr", {"data-test": "recipeDetail__fiberCount"})
         fiber = fiber[0].find_all("td")[1].text
-        protein = nutritional_values_container.find_all("tr", {"data-test": "recipeDetail__proteinCount"})
+
+        protein = nv_container.find_all("tr", {"data-test": "recipeDetail__proteinCount"})
         protein = protein[0].find_all("td")[1].text
-        fat = nutritional_values_container.find_all("tr", {"data-test": "recipeDetail__fatCount"})
+
+        fat = nv_container.find_all("tr", {"data-test": "recipeDetail__fatCount"})
         fat = fat[0].find_all("td")[1].text
         return {
             "calories": calories,
