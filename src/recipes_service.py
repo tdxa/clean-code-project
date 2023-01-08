@@ -1,7 +1,7 @@
 import pymongo
-from typing import Any
-from bson.json_util import dumps
+from typing import Any, Mapping
 from bson.objectid import ObjectId
+from pymongo.cursor import Cursor
 from pymongo.server_api import ServerApi
 
 
@@ -20,27 +20,27 @@ class RecipesService:
 
     def get_one(self, id) -> str:
         """ Returns one recipe from the database """
-        return dumps(self.collection.find_one({"_id": ObjectId(id)}))
+        return self.collection.find_one({"_id": ObjectId(id)})
 
-    def get_all(self) -> str:
+    def get_all(self) -> Cursor[Mapping[str, Any] | Any]:
         """ Returns all recipes from the database """
-        return dumps(self.collection.find())
+        return self.collection.find()
 
-    def get_all_names(self) -> str:
+    def get_all_names(self) -> Cursor[Mapping[str, Any] | Any]:
         """ Returns all names of recipes from the database """
-        return dumps(self.collection.find({}, {"name": 1, "_id": 0}))
+        return self.collection.find({}, {"name": 1, "_id": 0})
 
-    def get_all_by_name(self, name) -> str:
+    def get_one_by_name(self, name) -> Cursor[Mapping[str, Any] | Any]:
         """ Returns all recipes with given name """
-        return dumps(self.collection.find({"name": name}))
+        return self.collection.find_one({"name": name})
 
-    def get_all_by_tag(self, tag) -> str:
+    def get_all_by_tag(self, tag) -> Cursor[Mapping[str, Any] | Any]:
         """ Returns all recipes with given tag """
-        return dumps(self.collection.find({"tags": tag}))
+        return self.collection.find({"tags": tag})
 
-    def get_all_by_ingredient(self, ingredient) -> str:
+    def get_all_by_ingredient(self, ingredient) -> Cursor[Mapping[str, Any] | Any]:
         """ Returns all recipes with given ingredient """
-        return dumps(self.collection.find({"ingredients": ingredient}))
+        return self.collection.find({"ingredients": ingredient})
 
     def insert_one(self, data):
         """ Inserts one recipe to the database """
