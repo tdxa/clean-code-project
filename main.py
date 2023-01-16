@@ -1,10 +1,10 @@
 from src.recipes_controller import RecipesController
 
+
 if __name__ == '__main__':
     """ The main function """
     controller = RecipesController()
     # print(controller.check_connection())
-
     szarlotka = controller.get_recipe_by_name('Zdrowa szarlotka')
     szarlotka.print_recipe()
 

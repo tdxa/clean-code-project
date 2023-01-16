@@ -1,9 +1,11 @@
-import requests
 from typing import Any
+
+import requests
 from bs4 import BeautifulSoup
 
 
 class Scraper:
+    """Represents a scraper"""
     def __init__(self, url: str) -> None:
         """
         Gets recipe data from given url
@@ -71,7 +73,9 @@ class Scraper:
         Returns preparation method of the recipe
         :return: list of steps
         """
-        preparation_method_container = self.soup.find('div', {'data-test': 'recipeDetail__instructionsContainer'})
+        preparation_method_container = self.soup.find('div', {
+            'data-test': 'recipeDetail__instructionsContainer',
+        })
         preparation_method = preparation_method_container.find_all('li')
         return [step.text for step in preparation_method]
 
