@@ -1,0 +1,68 @@
+@use "variables";
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-family: variables.$font-family-regular;
+  font-size: variables.$default-font-size;
+}
+
+body {
+  font-family: variables.$font-family-regular;
+  font-size: variables.$default-font-size;
+  font-weight: normal;
+  word-wrap: break-word;
+  color: variables.$font-color-primary;
+}
+
+.h1-typography {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.h2-typography {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.h3-typography {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.h4-typography {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.p-typography {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+h1 {
+  @extend .h1-typography;
+}
+
+h2 {
+  @extend .h2-typography;
+}
+
+h3 {
+  @extend .h3-typography;
+}
+
+h4 {
+  @extend .h4-typography;
+}
+
+p {
+  @extend .p-typography;
+}
