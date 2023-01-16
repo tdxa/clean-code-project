@@ -8,10 +8,11 @@ from passlib.context import CryptContext
 from backend.core.config import settings
 from backend.models.token_model import TokenData
 
-class Auth():
+
+class Auth:
     def __init__(self) -> None:
-        self.pwd_context = CryptContext(schemes=['bcrypt'])
-        
+        self.pwd_context = CryptContext(schemes=["bcrypt"])
+
     def encode_password(self, password: str):
         return self.pwd_context.hash(password)
 
@@ -25,25 +26,28 @@ class Auth():
         else:
             expire = datetime.utcnow() + timedelta(minutes=15)
         to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
-        
+        encoded_jwt = jwt.encode(
+            to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+        )
+
         return encoded_jwt
 
     def decode_token(self, token):
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+            payload = jwt.decode(
+                token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
+            )
             username: str = payload.get("sub")
             if username is None:
                 raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Could not validate credentials",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
             return TokenData(username=username)
         except JWTError:
             raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-    headers={"WWW-Authenticate": "Bearer"},
-    )
-    
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not validate credentials",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
