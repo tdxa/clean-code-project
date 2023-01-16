@@ -1,3 +1,21 @@
+import { buttonTypography } from '@/src/styles/mui/typography';
+import {
+  borderRadiusButton,
+  primaryColor,
+  fontColorSecondary,
+  primaryColorHover,
+  primaryColorDisabled,
+  fontColorInactive,
+  primaryColorFocused,
+  secondaryColor,
+  borderColor,
+  fontColorPrimary,
+  secondaryColorHover,
+  secondaryColorDisabled,
+  borderColorDisabled,
+  secondaryColorFocused,
+} from '@/src/styles/mui/variables';
+
 const commonButtonProperties = {
   height: '35px',
   padding: '5px 25px',
