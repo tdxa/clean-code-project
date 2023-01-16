@@ -10,7 +10,7 @@ import {
   ListItemText,
 } from '@mui/material';
 import { muiStylesLayout } from '../muiStylesLayout';
-import { sideBarListUpperItems, sideBarListBottomItems } from './items';
+import { sideBarListBottomItems, sideBarListUpperItems } from './items';
 
 interface Props {
   open: boolean;

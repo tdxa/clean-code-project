@@ -3,14 +3,14 @@ import { Box } from '@mui/material';
 import * as styles from './layout.module.scss';
 import { useIsMobile } from '../../utils/hooks';
 import Topbar from './Topbar';
-import GreenLogo from '../../images/logo/logo-green.svg';
+import GreenLogo from '../../images/logo-green.svg';
 import Sidebar from './Sidebar';
 
 interface Props {
   children: ReactNode;
 }
 
-const MyMyLayout: FC<Props> = ({ children }) => {
+const AppLayout: FC<Props> = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const isMobile = useIsMobile();
 
@@ -25,6 +25,7 @@ const MyMyLayout: FC<Props> = ({ children }) => {
       )}
       <Box component="main" sx={{ flexGrow: 1 }}>
         <div className={styles.topbar}>
+          <img src={GreenLogo} className={styles.topbarLogo} />
           {/* <GreenLogo className={styles.topbarLogo} /> */}
           <div className={styles.topbarContent}>
             <Topbar handleDrawerToggle={handleToggleDrawer} />
@@ -46,4 +47,4 @@ const MyMyLayout: FC<Props> = ({ children }) => {
   );
 };
 
-export default MyMyLayout;
+export default AppLayout;

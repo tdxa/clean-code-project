@@ -30,5 +30,6 @@
 
     /* Completeness */
     "skipLibCheck": true
-  }
+  },
+  "include": ["src", "src/components", "src/custom.d.ts"]
 }
