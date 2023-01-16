@@ -8,10 +8,8 @@ import {
   ListItemText,
 } from '@mui/material';
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
 
 import styles from '@/src/components/Layout/layout.module.scss';
-import { useIsMobile } from '@/src/utils/hooks';
 
 import { muiStylesLayout } from '../muiStylesLayout';
 import { sideBarListBottomItems, sideBarListUpperItems } from './items';

@@ -1,9 +1,6 @@
+import { useIsMobile } from '@/src/utils/hooks';
 import { Box } from '@mui/material';
 import React, { FC, ReactNode, useEffect, useState } from 'react';
-
-import styles from '@/src/components/Layout/layout.module.scss';
-import { useIsMobile } from '@/src/utils/hooks';
-
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
@@ -26,7 +23,9 @@ const Layout: FC<Props> = ({ children }) => {
       )}
       <Box component='main' sx={{ flexGrow: 1 }}>
         <div className={styles.topbar}>
-          {/* <Logo className={styles.topbarLogo} /> */}
+          <div className={styles.topbarLogo}>
+            <Logo />
+          </div>
           <div className={styles.topbarContent}>
             <Topbar handleDrawerToggle={handleToggleDrawer} />
           </div>
@@ -38,7 +37,7 @@ const Layout: FC<Props> = ({ children }) => {
                 //   backgroundImage: `url(${Background as string})`,
               }
             }
-            className={styles.blueBackground}
+            className={styles.background}
           />
           <div className={styles.content}>{children}</div>
         </div>

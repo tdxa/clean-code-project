@@ -2,12 +2,13 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { IconButton, MenuItem } from '@mui/material';
 import React, { FC } from 'react';
 
-import styles from '@/src/components/Layout/layout.module.scss';
 import { useIsMobile } from '@/src/utils/hooks';
 
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import TertiaryButton from '../../Common/Buttons/TertinaryButton';
 import { muiStylesLayout } from '../muiStylesLayout';
+
+import styles from '../layout.module.scss';
 
 interface Props {
   handleDrawerToggle?: () => void;

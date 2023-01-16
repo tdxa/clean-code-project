@@ -1,21 +1,3 @@
-import {
-  borderColor,
-  borderColorDisabled,
-  borderRadiusButton,
-  buttonTypography,
-  fontColorInactive,
-  fontColorPrimary,
-  fontColorSecondary,
-  primaryColor,
-  primaryColorDisabled,
-  primaryColorFocused,
-  primaryColorHover,
-  secondaryColor,
-  secondaryColorDisabled,
-  secondaryColorFocused,
-  secondaryColorHover,
-} from '@/src/styles/mui/variables';
-
 const commonButtonProperties = {
   height: '35px',
   padding: '5px 25px',

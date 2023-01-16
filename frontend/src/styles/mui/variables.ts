@@ -28,12 +28,3 @@ export const borderRadiusCard = '10px';
 // shadows
 export const shadowButton = '0px 4px 5px #00000029';
 export const shadowCard = 'box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);';
-
-// typography
-export const buttonTypography = {
-  fontWeight: '400',
-  fontSize: '16px',
-  letterSpacing: '0px',
-  lineHeight: '24px',
-  marginBottom: '10px',
-};
