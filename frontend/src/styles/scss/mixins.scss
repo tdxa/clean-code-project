@@ -1,4 +1,4 @@
-@use '../../../frontend/src/styles/variables';
+@use 'variables';
 
 @mixin min-width($breakpoint: variables.$resolution-sm) {
   @media screen and (min-width: $breakpoint) {

@@ -1,13 +1,16 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import * as styles from './layout.module.scss';
-import { useIsMobile } from '../../utils';
+import { useIsMobile } from '../../utils/hooks';
+import Topbar from './Topbar';
+import GreenLogo from '../../images/logo/logo-green.svg';
+import Sidebar from './Sidebar';
 
 interface Props {
   children: ReactNode;
 }
 
-const Layout: FC<Props> = ({ children }) => {
+const MyMyLayout: FC<Props> = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const isMobile = useIsMobile();
 
@@ -20,18 +23,20 @@ const Layout: FC<Props> = ({ children }) => {
       {isMobile && (
         <Sidebar open={isSideBarOpen} toggleDrawer={handleToggleDrawer} />
       )}
-      <Box component='main' sx={{ flexGrow: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <div className={styles.topbar}>
-          <PricecheckLogo className={styles.topbarLogo} />
+          {/* <GreenLogo className={styles.topbarLogo} /> */}
           <div className={styles.topbarContent}>
             <Topbar handleDrawerToggle={handleToggleDrawer} />
           </div>
         </div>
         <div>
           <div
-            style={{
-              backgroundImage: `url(${BlueBackground as string})`,
-            }}
+            style={
+              {
+                //   backgroundImage: `url(${BlueBackground as string})`,
+              }
+            }
             className={styles.blueBackground}
           />
           <div className={styles.content}>{children}</div>
@@ -41,4 +46,4 @@ const Layout: FC<Props> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default MyMyLayout;
