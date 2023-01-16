@@ -51,7 +51,7 @@ class RecipesController:
         recipes = requests.get(url).json()['recipes']
         rec = Recipe()
         for recipe in recipes:
-            rec.create_recipe_from_url('https://www.fitczarodziejka.pl/przepis/' + recipe['slug'])
-            print('Saving recipe: ' + recipe['title'])
+            rec.create_recipe_from_url(f'https://www.fitczarodziejka.pl/przepis/{recipe["slug"]}')
+            print(f'Saving recipe: {recipe["title"]}')
             self.db_service.insert_one(rec.recipe_to_json())
         return True

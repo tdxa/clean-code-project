@@ -46,9 +46,9 @@ class Recipe:
         """ Returns recipe as a json """
         return {
             'url': self.url,
-            "name": self.name,
-            "ingredients": self.ingredients,
-            "nutritional_values": self.nutritional_values,
-            "preparation_method": self.preparation_method,
-            "tags": self.tags
+            'name': self.name,
+            'ingredients': self.ingredients,
+            'nutritional_values': self.nutritional_values,
+            'preparation_method': self.preparation_method,
+            'tags': self.tags
         }
