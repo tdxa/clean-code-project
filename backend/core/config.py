@@ -4,6 +4,9 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    """
+    A class that extends BaseSettings with custom ones
+    """
     API_V1_STR: str = '/api/v1'
     MONGO_CONNECTION_STRING: str = os.getenv(
         'MONGO_CONNECTION_STRING', 'mongodb://localhost:27017'

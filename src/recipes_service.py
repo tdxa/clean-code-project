@@ -1,5 +1,6 @@
-import pymongo
 from typing import Any, Mapping
+
+import pymongo
 from bson.objectid import ObjectId
 from pymongo.cursor import Cursor
 from pymongo.server_api import ServerApi
