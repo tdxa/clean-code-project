@@ -1,11 +1,11 @@
-import * as React from 'react';
+import  React from 'react';
 import { Link } from 'gatsby';
 
-import OriginalLayout from '../components/layout';
 import Seo from '../components/Common/seo';
+import AppLayout from '../components/Layout';
 
 const UsingDSG = () => (
-  <OriginalLayout>
+  <AppLayout>
     <h1>
       Hello from a <b>DSG Page</b>
     </h1>
@@ -18,7 +18,7 @@ const UsingDSG = () => (
       .
     </p>
     <Link to="/">Go back to the homepage</Link>
-  </OriginalLayout>
+  </AppLayout>
 );
 
 export const Head = () => <Seo title="Using DSG" />;

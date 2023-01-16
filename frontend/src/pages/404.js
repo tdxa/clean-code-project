@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AppLayout from '../components/Layout';
 import Seo from '../components/Common/seo';
 
