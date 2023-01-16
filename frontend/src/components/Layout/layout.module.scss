@@ -1,0 +1,84 @@
+@use '../../styles/main';
+
+.wrapper {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.topbar-logo {
+  height: 35px;
+  width: fit-content;
+}
+
+.topbar-content {
+  width: 100%;
+}
+
+.topbar-main {
+  float: right;
+  display: flex;
+  align-items: center;
+  color: main.$font-color-primary;
+}
+
+.topbar-buttons {
+  display: inherit;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+.topbar-item {
+  margin-right: 30px;
+}
+
+.sidebar-container {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: main.$tertiary-color;
+  color: main.$font-color-secondary;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+  position: relative;
+}
+
+.content-logo {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.blue-background {
+  position: absolute;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+}
+
+.icon {
+  color: main.$font-color-secondary;
+}
+
+@include main.min-width() {
+  .content-logo {
+    margin-bottom: 85px;
+  }
+}
