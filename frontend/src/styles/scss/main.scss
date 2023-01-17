@@ -1,0 +1,13 @@
+@forward 'variables';
+@forward 'typography';
+@forward 'mixins';
+
+body {
+  margin: 0;
+  background: #fafafa;
+}
+
+// global reusable class for hiding items on the screen
+.item-hidden {
+  visibility: hidden;
+}
