@@ -1,6 +1,8 @@
-import requests
 from typing import Any, Mapping
+
+import requests
 from pymongo.cursor import Cursor
+
 from src.recipe import Recipe
 from src.recipes_service import RecipesService
 
