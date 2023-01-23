@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-from backend.api.auth import router as user_router
+from api.auth import router as user_router
 
 
 app = FastAPI()

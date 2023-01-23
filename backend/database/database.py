@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-from backend.core.config import settings
+from core.config import settings
 
 
 _client = MongoClient(settings.MONGO_CONNECTION_STRING)

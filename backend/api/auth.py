@@ -4,12 +4,12 @@ from fastapi import APIRouter, Depends
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-from backend.core.auth import Auth
-from backend.core.config import settings
-from backend.database import database
-from backend.exceptions import InvalidCredentialsException, UsernameConflictException
-from backend.models.token_model import Token
-from backend.models.user_model import User, UserCreate
+from core.auth import Auth
+from core.config import settings
+from database import database
+from exceptions import InvalidCredentialsException, UsernameConflictException
+from models.token_model import Token
+from models.user_model import User, UserCreate
 
 
 auth = Auth()

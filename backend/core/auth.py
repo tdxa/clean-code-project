@@ -4,9 +4,9 @@ from typing import Union
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 
-from backend.core.config import settings
-from backend.exceptions import InvalidCredentialsException
-from backend.models.token_model import TokenData
+from core.config import settings
+from exceptions import InvalidCredentialsException
+from models.token_model import TokenData
 
 
 class Auth:
