@@ -4,12 +4,12 @@ from .recipe_model import Recipe, RecipeResponse
 from .shared_model import PyObjectId
 
 __all__ = [
-    'Token',
-    'TokenData',
-    'User',
-    'UserCreate',
-    'UserInDB',
-    'Recipe',
-    'RecipeResponse',
-    'PyObjectId',
+    "Token",
+    "TokenData",
+    "User",
+    "UserCreate",
+    "UserInDB",
+    "Recipe",
+    "RecipeResponse",
+    "PyObjectId",
 ]

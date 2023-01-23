@@ -19,6 +19,4 @@ class UsernameConflictException(HTTPException):
 
 class RecipeNotFoundException(HTTPException):
     def __init__(self, message: str) -> None:
-        super().__init__(
-            status.HTTP_404_NOT_FOUND, message
-        )
+        super().__init__(status.HTTP_404_NOT_FOUND, message)

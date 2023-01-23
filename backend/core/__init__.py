@@ -3,6 +3,6 @@ from .config import settings
 
 
 __all__ = [
-    'settings',
-    'Auth',
+    "settings",
+    "Auth",
 ]
