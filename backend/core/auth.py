@@ -18,7 +18,7 @@ class Auth:
         """
         Initializes CryptContext usign bcrypt scheme
         """
-        self.pwd_context = CryptContext(schemes=['bcrypt'])
+        self.pwd_context = CryptContext(schemes=["bcrypt"])
 
     def encode_password(self, password: str) -> str:
         """
@@ -82,7 +82,7 @@ class Auth:
             payload = jwt.decode(
                 token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
             )
-            username: str = payload.get('sub')
+            username: str = payload.get("sub")
             if username is None:
                 raise InvalidCredentialsException
 

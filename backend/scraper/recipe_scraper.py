@@ -1,4 +1,5 @@
 import requests
+import re
 from bs4 import BeautifulSoup
 
 from models import NutritionalValues, Recipe
@@ -38,7 +39,7 @@ class RecipeScraper:
         """
         ingredients_container = self.soup.find('div', {'class': 'recipeDetailIngredients'})
         ingredients = ingredients_container.find_all('li')
-        ingredients = [ingredient.text for ingredient in ingredients]
+        ingredients = [self._remove_recommendation_sentence(ingredient.text) for ingredient in ingredients]
         return [ingredient.split(' ', 1) for ingredient in ingredients]
 
     def get_nutritional_values(self) -> NutritionalValues:
@@ -73,7 +74,7 @@ class RecipeScraper:
             'data-test': 'recipeDetail__instructionsContainer',
         })
         preparation_instruction = preparation_instruction_container.find_all('li')
-        return [step.text for step in preparation_instruction]
+        return [self._remove_recommendation_sentence(step.text) for step in preparation_instruction]
 
     def get_tags(self) -> list[str]:
         """
@@ -83,6 +84,7 @@ class RecipeScraper:
         tags_container = self.soup.find('div', {'class': 'recipeDetailTags'})
         tags = tags_container.find_all('a')
         return [tag.text for tag in tags]
+
 
     def download_recipes_from_url(self, url: str) -> list[Recipe]:
         """
@@ -95,3 +97,7 @@ class RecipeScraper:
             Recipe.get_recipe_from_url(self.BASE_URL + recipe['slug'])
             for recipe in recipes_dist
         ]
+
+    @staticmethod
+    def _remove_recommendation_sentence(text: str) -> str:
+        return re.sub("\\(polecam.*\\)", '', text).strip()
