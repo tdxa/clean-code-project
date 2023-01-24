@@ -1,7 +1,9 @@
+from .db_exceptions import RecipeAlreadyExist
 from .http_exceptions import InvalidCredentialsException, UsernameConflictException
 
 
 __all__ = [
     'InvalidCredentialsException',
-    'UsernameConflictException'
+    'UsernameConflictException',
+    'RecipeAlreadyExist',
 ]
