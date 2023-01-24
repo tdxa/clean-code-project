@@ -2,6 +2,9 @@ from bson import ObjectId
 
 
 class PyObjectId(ObjectId):
+    """
+    Model class for ObjectId
+    """
     @classmethod
     def __get_validators__(cls):
         yield cls.validate

@@ -4,6 +4,9 @@ from models.shared_model import PyObjectId
 
 
 class Recipe(BaseModel):
+    """
+    Model representing base Recipe
+    """
     url: str
     name: str
     ingredients: list
@@ -13,6 +16,9 @@ class Recipe(BaseModel):
 
 
 class RecipeResponse(Recipe):
+    """
+    Model class for RecipeResponse
+    """
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
 
     class Config:

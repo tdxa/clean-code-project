@@ -96,5 +96,6 @@ class Scraper:
         tags = tags_container.find_all("a")
         return [tag.text for tag in tags]
 
-    def _remove_recommendation_sentence(self, text: str) -> str:
+    @staticmethod
+    def _remove_recommendation_sentence(text: str) -> str:
         return re.sub("\\(polecam.*\\)", '', text).strip()
