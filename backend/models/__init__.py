@@ -1,5 +1,7 @@
 from .token_model import Token, TokenData
 from .user_model import User, UserCreate, UserInDB
+from .nutritional_values import NutritionalValues
+from .recipe import Recipe
 
 
 __all__ = [
@@ -7,5 +9,7 @@ __all__ = [
     'TokenData',
     'User',
     'UserCreate',
-    'UserInDB'
+    'UserInDB',
+    'NutritionalValues',
+    'Recipe',
 ]
