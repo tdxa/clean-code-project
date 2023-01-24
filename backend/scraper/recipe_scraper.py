@@ -1,11 +1,13 @@
-from typing import Any
-
 import requests
 from bs4 import BeautifulSoup
 
-from models import NutritionalValues
+from models import NutritionalValues, Recipe
 
-class Scraper:
+
+class RecipeScraper:
+    """Class responsible for scraping recipes from the site"""
+    BASE_URL = 'https://www.fitczarodziejka.pl/przepis/'
+
     def __init__(self, url: str) -> None:
         """
         Gets recipe data from given url
@@ -81,3 +83,15 @@ class Scraper:
         tags_container = self.soup.find('div', {'class': 'recipeDetailTags'})
         tags = tags_container.find_all('a')
         return [tag.text for tag in tags]
+
+    def download_recipes_from_url(self, url: str) -> list[Recipe]:
+        """
+        Returns recipes from given url to the database
+        :return: list of recipes
+        """
+        recipes_dist = requests.get(url).json()['recipes']
+
+        return [
+            Recipe.get_recipe_from_url(self.BASE_URL + recipe['slug'])
+            for recipe in recipes_dist
+        ]
