@@ -1,3 +1,4 @@
+import re
 from typing import Any
 
 import requests
@@ -37,7 +38,7 @@ class Scraper:
             "div", {"class": "recipeDetailIngredients"}
         )
         ingredients = ingredients_container.find_all("li")
-        ingredients = [ingredient.text for ingredient in ingredients]
+        ingredients = [self._remove_recommendation_sentence(ingredient.text) for ingredient in ingredients]
         return [ingredient.split(" ", 1) for ingredient in ingredients]
 
     def get_nutritional_values(self) -> dict[str, Any]:
@@ -84,7 +85,7 @@ class Scraper:
             "div", {"data-test": "recipeDetail__instructionsContainer"}
         )
         preparation_method = preparation_method_container.find_all("li")
-        return [step.text for step in preparation_method]
+        return [self._remove_recommendation_sentence(step.text) for step in preparation_method]
 
     def get_tags(self) -> list[str]:
         """
@@ -94,3 +95,6 @@ class Scraper:
         tags_container = self.soup.find("div", {"class": "recipeDetailTags"})
         tags = tags_container.find_all("a")
         return [tag.text for tag in tags]
+
+    def _remove_recommendation_sentence(self, text: str) -> str:
+        return re.sub("\\(polecam.*\\)", '', text).strip()
