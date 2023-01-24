@@ -1,64 +1,62 @@
 from typing import Any, Mapping
 
-import pymongo
+from pymongo.database import Database
+from pymongo.errors import DuplicateKeyError
 from bson.objectid import ObjectId
 from pymongo.cursor import Cursor
-from pymongo.server_api import ServerApi
 
+from exceptions.db_exceptions import RecipeAlreadyExist
+from models import Recipe
+
+IdType = str | ObjectId | bytes | None
 
 class RecipesService:
-    def __init__(self) -> None:
-        """ Initializes the database connection """
-        connection_url = "mongodb+srv://cleanuser:cleanpassword@recipescluster.bapblqj.mongodb.net" \
-                         "/?retryWrites=true"
-        self.client = pymongo.MongoClient(connection_url, server_api=ServerApi('1'))
-        self.db = self.client["RecipesDatabase"]
-        self.collection = self.db["RecipesCollection"]
+    """Class for managing recipes in database"""
+    COLLECTION_NAME = 'RecipesCollection'
 
-    def check_connection(self) -> dict[str, Any]:
-        """ Checks if connection to the database is established """
-        return self.client.server_info()
+    def __init__(self, database: Database) -> None:
+        """Initializes the database connection"""
+        self.collection = database[self.COLLECTION_NAME]
 
-    def get_one(self, id) -> str:
-        """ Returns one recipe from the database """
-        return self.collection.find_one({"_id": ObjectId(id)})
+    def get_one(self, id: IdType) -> str:
+        """Returns one recipe from the database"""
+        return self.collection.find_one({'_id': ObjectId(id)})
 
     def get_all(self) -> Cursor[Mapping[str, Any] | Any]:
-        """ Returns all recipes from the database """
+        """Returns all recipes from the database"""
         return self.collection.find()
 
     def get_all_names(self) -> Cursor[Mapping[str, Any] | Any]:
-        """ Returns all names of recipes from the database """
-        return self.collection.find({}, {"name": 1, "_id": 0})
+        """Returns all names of recipes from the database"""
+        return self.collection.find({}, {'name': 1, '_id': 0})
 
-    def get_one_by_name(self, name) -> Cursor[Mapping[str, Any] | Any]:
-        """ Returns all recipes with given name """
-        return self.collection.find_one({"name": name})
+    def get_one_by_name(self, name: str) -> Cursor[Mapping[str, Any] | Any]:
+        """Returns all recipes with given name"""
+        return self.collection.find_one({'name': name})
 
-    def get_all_by_tag(self, tag) -> Cursor[Mapping[str, Any] | Any]:
-        """ Returns all recipes with given tag """
-        return self.collection.find({"tags": tag})
+    def get_all_by_tag(self, tag: str) -> Cursor[Mapping[str, Any] | Any]:
+        """Returns all recipes with given tag"""
+        return self.collection.find({'tags': tag})
 
-    def get_all_by_ingredient(self, ingredient) -> Cursor[Mapping[str, Any] | Any]:
-        """ Returns all recipes with given ingredient """
-        return self.collection.find({"ingredients": ingredient})
+    def get_all_by_ingredient(self, ingredient: str) -> Cursor[Mapping[str, Any] | Any]:
+        """Returns all recipes with given ingredient"""
+        return self.collection.find({'ingredients': ingredient})
 
-    def insert_one(self, data):
-        """ Inserts one recipe to the database """
+    def insert_one(self, recipe: Recipe):
+        """Inserts one recipe to the database"""
         try:
-            data = dict(data)
-            return self.collection.insert_one(data)
-        except pymongo.errors.DuplicateKeyError:
-            print("Recipe already exists in the database")
+            return self.collection.insert_one(recipe.dict())
+        except DuplicateKeyError:
+            raise RecipeAlreadyExist
 
-    def update_one(self, id, data):
-        """ Updates one recipe in the database """
-        return self.collection.update_one({"_id": ObjectId(id)}, {"$set": data})
+    def update_one(self, id: IdType, recipe: Recipe):
+        """Updates one recipe in the database"""
+        return self.collection.update_one({'_id': ObjectId(id)}, {'$set': recipe.dict()})
 
-    def delete_one(self, id):
-        """ Deletes one recipe from the database """
-        return self.collection.delete_one({"_id": ObjectId(id)})
+    def delete_one(self, id: IdType):
+        """Deletes one recipe from the database"""
+        return self.collection.delete_one({'_id': ObjectId(id)})
 
     def delete_all(self):
-        """ Deletes all recipes from the database """
+        """Deletes all recipes from the database"""
         return self.collection.delete_many({})

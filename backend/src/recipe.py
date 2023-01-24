@@ -33,15 +33,6 @@ class Recipe:
         self.tags = self.scrapper.get_tags()
         return True
 
-    def print_recipe(self) -> None:
-        """ Prints recipe in the console """
-        print('Name: ', self.name)
-        print('url ', self.url)
-        print('ingredients ', self.ingredients)
-        print('nutritional_values ', self.nutritional_values)
-        print('preparation_method ', self.preparation_method)
-        print('tags ', self.tags)
-
     def recipe_to_json(self) -> dict:
         """ Returns recipe as a json """
         return {
