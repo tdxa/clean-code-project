@@ -3,7 +3,7 @@ from typing import Any, Mapping
 from bson.objectid import ObjectId
 from pymongo.cursor import Cursor
 from pymongo.database import Database
-from pymongo.errors import DuplicateKeyError
+from pymongo.errors import BulkWriteError, DuplicateKeyError
 
 from exceptions import RecipeAlreadyExist
 from models import Recipe
@@ -50,15 +50,16 @@ class RecipesService:
         try:
             return self.collection.insert_one(recipe.dict())
         except DuplicateKeyError:
-            raise RecipeAlreadyExist
+            raise RecipeAlreadyExist(recipe.name)
 
     def insert_many(self, recipes: list[Recipe]):
         """Inserts many recipes to the database"""
         recipes_as_dicts = map(lambda x: x.dict(), recipes)
         try:
             return self.collection.insert_many(recipes_as_dicts)
-        except DuplicateKeyError:
-            raise RecipeAlreadyExist
+        except (DuplicateKeyError, BulkWriteError):
+            for recipe in recipes:
+                self.insert_one(recipe)
 
     def update_one(self, id: IdType, recipe: Recipe):
         """Updates one recipe in the database"""
