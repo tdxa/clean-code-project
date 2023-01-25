@@ -1,9 +1,10 @@
 from fastapi import APIRouter
-from crud.recipe_crud import RecipeService
+from services import RecipesService
 from models.recipe_model import RecipeResponse, Recipe, PyObjectId
 from exceptions import RecipeNotFoundException
+from database import database
 
-recipe_service = RecipeService()
+recipe_service = RecipesService(database)
 recipes_router = APIRouter()
 
 
