@@ -31,7 +31,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': 2,
     'react/prop-types': 0,
     'no-shadow': 0,
-    'sort-imports': 0,
+    'sort-imports': 1,
     'react/no-did-mount-set-state': 2,
     'react/no-did-update-set-state': 2,
     'react/no-unknown-property': [2, { ignore: ['class', 'for'] }],

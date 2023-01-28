@@ -1,0 +1,8 @@
+@use '../../../styles/main';
+
+.container {
+  background: main.$background-color;
+  color: main.$font-color-primary;
+  border-radius: main.$border-radius-card;
+  box-shadow: main.$shadow-card;
+}

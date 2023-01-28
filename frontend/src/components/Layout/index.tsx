@@ -1,16 +1,18 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
+
 import { Box } from '@mui/material';
+import GarnuszekLogo from '../../images/logo/logo-full-green.svg';
+import BlueBackground from '../../images/background.png';
 import * as styles from './layout.module.scss';
-import { useIsMobile } from '../../utils/hooks';
 import Topbar from './Topbar';
-import GreenLogo from '../../images/logo-green.svg';
+import { useIsMobile } from '../../utils';
 import Sidebar from './Sidebar';
 
 interface Props {
   children: ReactNode;
 }
 
-const AppLayout: FC<Props> = ({ children }) => {
+const Layout: FC<Props> = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const isMobile = useIsMobile();
 
@@ -23,21 +25,18 @@ const AppLayout: FC<Props> = ({ children }) => {
       {isMobile && (
         <Sidebar open={isSideBarOpen} toggleDrawer={handleToggleDrawer} />
       )}
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box component='main' sx={{ flexGrow: 1 }}>
         <div className={styles.topbar}>
-          <img src={GreenLogo} className={styles.topbarLogo} />
-          {/* <GreenLogo className={styles.topbarLogo} /> */}
+          <GarnuszekLogo className={styles.topbarLogo} />
           <div className={styles.topbarContent}>
             <Topbar handleDrawerToggle={handleToggleDrawer} />
           </div>
         </div>
         <div>
           <div
-            style={
-              {
-                //   backgroundImage: `url(${BlueBackground as string})`,
-              }
-            }
+            style={{
+              backgroundImage: `url(${BlueBackground as string})`,
+            }}
             className={styles.blueBackground}
           />
           <div className={styles.content}>{children}</div>
@@ -47,4 +46,4 @@ const AppLayout: FC<Props> = ({ children }) => {
   );
 };
 
-export default AppLayout;
+export default Layout;

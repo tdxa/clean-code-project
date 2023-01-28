@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Seo from '../components/Common/seo';
-import AppLayout from '../components/Layout';
+import Layout from '../components/Layout';
+import Seo from '../components/seo';
 
 const IndexPage = () => (
   <>
-    <Seo title="Home" description={undefined} children={undefined} />
-    <AppLayout>
+    <Seo title='Home' />
+    <Layout>
       <h1>hello</h1>
-    </AppLayout>
+    </Layout>
   </>
 );
 

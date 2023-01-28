@@ -12,3 +12,8 @@ flake8-report/
 env/
 venv/
 .DS_Store
+
+# gatsby files
+frontend/.cache/
+frontend/node_modules/
+public

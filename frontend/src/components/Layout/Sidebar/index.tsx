@@ -1,6 +1,4 @@
 import * as styles from '../layout.module.scss';
-import React, { FC } from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
 import {
   Drawer,
   List,
@@ -9,8 +7,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+import React, { FC } from 'react';
+import { sideBarListBottomItems, sideBarListUpperItems } from '../utils';
+import MenuIcon from '@mui/icons-material/Menu';
 import { muiStylesLayout } from '../muiStylesLayout';
-import { sideBarListBottomItems, sideBarListUpperItems } from './items';
+import { useDispatch } from 'react-redux';
+import { useIsMobile } from '../../../utils';
 
 interface Props {
   open: boolean;
@@ -18,6 +20,9 @@ interface Props {
 }
 
 const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
+  const dispatch = useDispatch();
+  const isMobile = useIsMobile();
+
   const handleLogout = () => {
     console.log('logout');
   };
@@ -67,7 +72,7 @@ const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
   };
 
   return (
-    <Drawer anchor="right" open={open} onClose={toggleDrawer}>
+    <Drawer anchor='right' open={open} onClose={toggleDrawer}>
       {drawerItems()}
     </Drawer>
   );

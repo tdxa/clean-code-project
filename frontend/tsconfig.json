@@ -1,35 +1,21 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
-
-    /* Language and Environment */
-    "target": "es2016",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-
-    /* Modules */
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types"],
-    "resolveJsonModule": true,
-
-    /* JavaScript Support */
     "allowJs": true,
-
-    /* Emit */
-    "noEmit": true,
-
-    /* Interop Constraints */
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-
-    /* Type Checking */
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-
-    /* Completeness */
-    "skipLibCheck": true
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "typeRoots": ["node_modules/@types"]
   },
   "include": ["src", "src/components", "src/custom.d.ts"]
 }

@@ -1,4 +1,4 @@
-import { primaryColor, secondaryColor } from '../../styles/mui/variables';
+import { primaryColor, secondaryColor } from '../../styles/mui/mui-variables';
 
 export const muiStylesLayout = {
   iconMenu: {
