@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import React, { FC, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -16,6 +17,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 interface Props {
   open: boolean;
   handleClose: () => void;
+  redirect: () => void;
 }
 interface RegisterData {
   email: string;
@@ -23,7 +25,7 @@ interface RegisterData {
   password: string;
 }
 
-const RegisterModal: FC<Props> = ({ open, handleClose }) => {
+const RegisterModal: FC<Props> = ({ open, handleClose, redirect }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -49,7 +51,21 @@ const RegisterModal: FC<Props> = ({ open, handleClose }) => {
 
   return (
     <Dialog fullWidth maxWidth='lg' open={open} onClose={handleClose}>
-      <DialogTitle>Zarejestruj się</DialogTitle>
+      <DialogTitle>
+        Zarejestruj się
+        <IconButton
+          aria-label='close'
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
       <DialogContent>
         <Box>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,7 +118,18 @@ const RegisterModal: FC<Props> = ({ open, handleClose }) => {
                 />
               )}
             />
-            <p>Posiadasz już konto? Zaloguj się</p>
+            <p>
+              Posiadasz już konto?{' '}
+              <span
+                role='button'
+                onClick={() => {
+                  handleClose();
+                  redirect();
+                }}
+              >
+                Zaloguj się
+              </span>
+            </p>
             <PrimaryButton text='Zarejestruj się' isSubmit />
           </form>
         </Box>

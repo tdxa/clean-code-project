@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import React, { FC, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -16,13 +17,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 interface Props {
   open: boolean;
   handleClose: () => void;
+  redirect: () => void;
 }
 interface LoginData {
   email: string;
   password: string;
 }
 
-const LoginModal: FC<Props> = ({ open, handleClose }) => {
+const LoginModal: FC<Props> = ({ open, handleClose, redirect }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -47,7 +49,21 @@ const LoginModal: FC<Props> = ({ open, handleClose }) => {
 
   return (
     <Dialog fullWidth maxWidth='lg' open={open} onClose={handleClose}>
-      <DialogTitle>Zaloguj się</DialogTitle>
+      <DialogTitle>
+        Zaloguj się{' '}
+        <IconButton
+          aria-label='close'
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
       <DialogContent>
         <Box>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -88,7 +104,18 @@ const LoginModal: FC<Props> = ({ open, handleClose }) => {
                 />
               )}
             />
-            <p>Nie posiadasz konta? Zarejestruj się</p>
+            <p>
+              Nie posiadasz konta?{' '}
+              <span
+                role='button'
+                onClick={() => {
+                  handleClose();
+                  redirect();
+                }}
+              >
+                Zarejestruj się
+              </span>
+            </p>
             <PrimaryButton text='Zaloguj' isSubmit />
           </form>
         </Box>

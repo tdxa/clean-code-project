@@ -4,10 +4,10 @@ import React, { FC, useState } from 'react';
 import LoginModal from '../../Authentication/Login';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
+import RegisterModal from '../../Authentication/Register';
 import TertiaryButton from '../../Common/Buttons/TertiaryButton';
 import { muiStylesLayout } from '../muiStylesLayout';
 import { useIsMobile } from '../../../utils';
-import RegisterModal from '../../Authentication/Register';
 
 interface Props {
   handleDrawerToggle?: () => void;
@@ -21,10 +21,15 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
 
   return (
     <>
-      <LoginModal open={openLogin} handleClose={() => setOpenLogin(false)} />
+      <LoginModal
+        open={openLogin}
+        handleClose={() => setOpenLogin(false)}
+        redirect={() => setOpenRegister(true)}
+      />
       <RegisterModal
         open={openRegister}
         handleClose={() => setOpenRegister(false)}
+        redirect={() => setOpenLogin(true)}
       />
       <div className={styles.topbarMain}>
         {isMobile ? (
