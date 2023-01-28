@@ -5,17 +5,19 @@ import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 
+export const drawerWidth = 240;
+
 export const sideBarListUpperItems = [
   {
     name: 'dashboard',
     icon: <HomeIcon />,
-    text: 'Strona główna',
+    text: 'oe',
     event: () => console.log('folders'),
   },
   {
     name: 'folders',
     icon: <FolderIcon />,
-    text: 'Opcja 1',
+    text: 'fsjfksxkjfs',
     event: () => console.log('folders'),
   },
 ];
@@ -24,13 +26,13 @@ export const sideBarListBottomItems = [
   {
     name: 'help',
     icon: <HelpIcon />,
-    text: 'Opcja 2',
+    text: 'lalala',
     event: () => console.log('folders'),
   },
   {
     name: 'settings',
     icon: <SettingsIcon />,
-    text: 'Opcja 3',
+    text: 'hhehe',
     event: () => console.log('settings'),
   },
   {

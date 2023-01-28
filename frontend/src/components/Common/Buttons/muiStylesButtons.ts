@@ -1,20 +1,21 @@
-import { buttonTypography } from '../../../styles/mui/typography';
 import {
-  borderRadiusButton,
-  primaryColor,
-  fontColorSecondary,
-  primaryColorHover,
-  primaryColorDisabled,
-  fontColorInactive,
-  primaryColorFocused,
-  secondaryColor,
   borderColor,
-  fontColorPrimary,
-  secondaryColorHover,
-  secondaryColorDisabled,
   borderColorDisabled,
+  borderRadiusButton,
+  buttonTypography,
+  fontColorInactive,
+  fontColorPrimary,
+  fontColorSecondary,
+  primaryColor,
+  primaryColorDisabled,
+  primaryColorFocused,
+  primaryColorHover,
+  secondaryColor,
+  secondaryColorDisabled,
   secondaryColorFocused,
-} from '../../../styles/mui/variables';
+  secondaryColorHover,
+  shadowButton,
+} from '../../../styles/mui/mui-variables';
 
 const commonButtonProperties = {
   height: '35px',
