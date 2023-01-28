@@ -7,6 +7,7 @@ import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import TertiaryButton from '../../Common/Buttons/TertiaryButton';
 import { muiStylesLayout } from '../muiStylesLayout';
 import { useIsMobile } from '../../../utils';
+import RegisterModal from '../../Authentication/Register';
 
 interface Props {
   handleDrawerToggle?: () => void;
@@ -14,11 +15,17 @@ interface Props {
 
 const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
   const isMobile = useIsMobile();
+
   const [openLogin, setOpenLogin] = useState(false);
+  const [openRegister, setOpenRegister] = useState(false);
 
   return (
     <>
       <LoginModal open={openLogin} handleClose={() => setOpenLogin(false)} />
+      <RegisterModal
+        open={openRegister}
+        handleClose={() => setOpenRegister(false)}
+      />
       <div className={styles.topbarMain}>
         {isMobile ? (
           <div>
@@ -35,8 +42,14 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
             <MenuItem>About</MenuItem>
             <MenuItem>How it works</MenuItem>
             <div className={styles.topbarButtons}>
-              <TertiaryButton text='Log in' event={() => setOpenLogin(true)} />
-              <PrimaryButton text='Sign up' />
+              <TertiaryButton
+                text='Zaloguj się'
+                event={() => setOpenLogin(true)}
+              />
+              <PrimaryButton
+                text='Zarejestruj się'
+                event={() => setOpenRegister(true)}
+              />
             </div>
           </>
         )}

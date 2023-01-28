@@ -55,7 +55,12 @@ const LoginModal: FC<Props> = ({ open, handleClose }) => {
               name='email'
               control={control}
               render={({ field }) => (
-                <TextField type='email' label='E-mail' {...field} />
+                <TextField
+                  type='email'
+                  autoComplete='off'
+                  label='E-mail'
+                  {...field}
+                />
               )}
             />
             <Controller
@@ -83,6 +88,7 @@ const LoginModal: FC<Props> = ({ open, handleClose }) => {
                 />
               )}
             />
+            <p>Nie posiadasz konta? Zarejestruj się</p>
             <PrimaryButton text='Zaloguj' isSubmit />
           </form>
         </Box>
