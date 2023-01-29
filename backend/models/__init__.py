@@ -3,7 +3,7 @@ from .recipe import Recipe
 from .token_model import Token, TokenData
 from .user_model import User, UserCreate, UserInDB
 from .recipe_model import Recipe, RecipeResponse
-from .shared_model import PyObjectId
+from .shared_model import PyObjectId, CommonQueryParams
 
 __all__ = [
     'Token',
@@ -15,4 +15,5 @@ __all__ = [
     'Recipe',
     "RecipeResponse",
     "PyObjectId",
+    'CommonQueryParams'
 ]

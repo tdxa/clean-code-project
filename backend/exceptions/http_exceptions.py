@@ -20,3 +20,8 @@ class UsernameConflictException(HTTPException):
 class RecipeNotFoundException(HTTPException):
     def __init__(self, message: str) -> None:
         super().__init__(status.HTTP_404_NOT_FOUND, message)
+
+
+class IncorrectParametersException(HTTPException):
+    def __init__(self) -> None:
+        super().__init__(status.HTTP_400_BAD_REQUEST, "Incorrect parameters provided")

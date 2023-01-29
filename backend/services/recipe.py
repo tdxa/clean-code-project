@@ -1,35 +1,38 @@
+import re
 from typing import Any, Mapping
-from models.shared_model import PyObjectId
-from models.recipe_model import RecipeResponse
 
 from bson.objectid import ObjectId
+from exceptions import RecipeAlreadyExist
+from models import Recipe
+from models.pagination_model import PaginationContent
+from models.recipe_model import RecipeResponse
+from models.shared_model import CommonQueryParams, PyObjectId
+from pymongo.collection import Collection
 from pymongo.cursor import Cursor
 from pymongo.database import Database
 from pymongo.errors import BulkWriteError, DuplicateKeyError
-
-from exceptions import RecipeAlreadyExist
-from models import Recipe
 from scraper import RecipeScraper
-
+from utils import paginate_content
 
 IdType = str | ObjectId | bytes | None
 
 
 class RecipesService:
     """Class for managing recipes in database"""
-    COLLECTION_NAME = 'RecipesCollection'
+
+    COLLECTION_NAME = "RecipesCollection"
 
     def __init__(self, database: Database) -> None:
         """Initializes the database connection"""
-        self.collection = database[self.COLLECTION_NAME]
+        self.collection: Collection = database[self.COLLECTION_NAME]
 
     def get_one(self, id: str) -> RecipeResponse:
         """Returns one recipe from the database"""
         return self.collection.find_one({"_id": ObjectId(id)})
 
-    def get_all(self) -> list[RecipeResponse]:
+    def get_all(self, params: CommonQueryParams) -> PaginationContent:
         """Returns all recipes from the database"""
-        return list(self.collection.find())
+        return paginate_content(self.collection, page=params.page, size=params.size)
 
     def get_all_names(self) -> list[str]:
         """Returns all names of recipes from the database"""
@@ -37,24 +40,28 @@ class RecipesService:
 
     def get_one_by_name(self, name: str) -> Cursor[Mapping[str, Any] | Any]:
         """Returns all recipes with given name"""
-        return self.collection.find_one({'name': name})
-    
+        return self.collection.find_one({"name": name})
+
     def get_all_tags(self) -> list[str]:
         """Returns all available tags"""
         return self.collection.distinct("tags")
 
-    def get_all_by_tag(self, tag: str) -> list[RecipeResponse]:
+    def get_all_by_tag(self, params: CommonQueryParams, tag: str) -> PaginationContent:
         """Returns all recipes with given tag"""
-        return list(self.collection.find({"tags": tag}, {"_id": 0}))
+        return paginate_content(
+            self.collection,
+            params.page,
+            params.size,
+            filter={"tags": re.compile(f"{tag}", re.IGNORECASE)},
+        )
 
     def get_random_recipe(self) -> RecipeResponse:
         """Returns random recipe from database"""
         return list(self.collection.aggregate(pipeline=[{"$sample": {"size": 1}}]))[0]
-       
 
     def get_all_by_ingredient(self, ingredient: str) -> Cursor[Mapping[str, Any] | Any]:
         """Returns all recipes with given ingredient"""
-        return self.collection.find({'ingredients': ingredient})
+        return self.collection.find({"ingredients": ingredient})
 
     def get_one_by_name(self, name: str):
         """Returns recipe with a given name"""
