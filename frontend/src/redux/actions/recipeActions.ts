@@ -4,7 +4,7 @@ import instance, {
   AsyncThunkConfig,
   isAxiosError,
 } from '../../api/axiosConfig';
-import Recipe from '../../components/Recipe';
+import { Recipe } from '../../api/recipeAPI';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { dispatchNotification } from '../../utils/redux';
 import { randomRecipeAPI } from '../../utils/paths';

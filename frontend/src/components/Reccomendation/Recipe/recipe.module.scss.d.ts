@@ -5,4 +5,7 @@ export const h3Typography: string;
 export const h4Typography: string;
 export const pTypography: string;
 export const itemHidden: string;
-export const container: string;
+export const containerRecipe: string;
+export const containerTitle: string;
+export const containerIngredients: string;
+export const containerMore: string;

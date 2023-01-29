@@ -23,7 +23,7 @@ const Layout: FC<Props> = ({ children }) => {
         display: 'flex',
         background: '#F9F9FB',
         flexGrow: 1,
-        padding: '10px 24px 24px',
+        padding: '10px 10px 24px',
       }}
     >
       <Sidebar open={isSideBarOpen} toggleDrawer={handleToggleDrawer} />

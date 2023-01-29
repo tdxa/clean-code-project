@@ -6,3 +6,6 @@ export const h4Typography: string;
 export const pTypography: string;
 export const itemHidden: string;
 export const container: string;
+export const covering: string;
+export const loaderText: string;
+export const hidden: string;
