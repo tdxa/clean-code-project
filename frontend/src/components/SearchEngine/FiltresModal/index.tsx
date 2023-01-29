@@ -6,7 +6,7 @@ import {
   DialogTitle,
   IconButton,
 } from '@mui/material';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import { muiStylesSearch } from '../muiStylesSearch';
@@ -49,8 +49,8 @@ const FiltresModal: FC<Props> = ({ open, handleClose }) => {
             onSubmit={handleSubmit(onSubmit)}
             className={styles.formContainer}
           >
-            <div className={styles.fieldContainer}></div>
-            <div className={styles.fieldContainer}></div>
+            <div className={styles.fieldContainer} />
+            <div className={styles.fieldContainer} />
             <PrimaryButton text='Wybierz' isSubmit />
           </form>
         </Box>
