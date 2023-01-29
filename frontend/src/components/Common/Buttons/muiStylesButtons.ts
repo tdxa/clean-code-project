@@ -1,6 +1,4 @@
 import {
-  borderColor,
-  borderColorDisabled,
   borderRadiusButton,
   buttonTypography,
   fontColorInactive,
@@ -47,8 +45,7 @@ export const muiStylesButtons = {
   secondaryButton: {
     ...buttonTypography,
     ...commonButtonProperties,
-    'backgroundColor': secondaryColor,
-    'border': `2px solid ${borderColor}`,
+    'backgroundColor': 'white',
     'boxShadow': 'none',
     'color': fontColorPrimary,
     ':hover': {
@@ -56,7 +53,6 @@ export const muiStylesButtons = {
     },
     ':disabled': {
       backgroundColor: secondaryColorDisabled,
-      borderColor: borderColorDisabled,
       boxShadow: 'none',
       color: fontColorInactive,
     },

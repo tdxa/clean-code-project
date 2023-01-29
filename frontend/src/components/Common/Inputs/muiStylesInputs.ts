@@ -1,23 +1,20 @@
+import { borderColor } from '../../../styles/mui/mui-variables';
+
 export const commonFormBase = {
   input: {
     'width': '100%',
     'heigth': '56px',
     '& label': {
-      //   'color': inputBorder,
       '&.Mui-focused': {
-        // color: inputBorderFocused,
+        color: borderColor,
       },
     },
     '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        // borderColor: inputBorder,
-        // borderWidth: '2px',
-      },
-      '&:focus fieldset': {
-        // borderColor: inputBorderFocused,
-      },
       '&:hover fieldset': {
-        // borderColor: inputBorderHovered,
+        borderColor: borderColor,
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: borderColor,
       },
     },
   },

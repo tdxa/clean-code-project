@@ -1,8 +1,8 @@
 // colors
 export const primaryColor = '#729343';
-export const primaryColorHover = '#042A3E';
-export const primaryColorFocused = '#042A3E';
-export const primaryColorDisabled = '#053A55';
+export const primaryColorHover = '#4d632e';
+export const primaryColorFocused = '#4d632e';
+export const primaryColorDisabled = '#9fce5e';
 
 export const secondaryColor = '#fcf5ee';
 export const secondaryColorHover = '#EBEBEB';
@@ -18,7 +18,7 @@ export const fontColorPrimary = '#423424';
 export const fontColorSecondary = '#FAFAFA';
 export const fontColorInactive = 'rgba(17, 33, 64, 0.3)';
 
-export const borderColor = '#0a2a4e';
+export const borderColor = '#729343';
 export const borderColorDisabled = 'rgba(10, 42, 78, 0.3)';
 
 // border radius sizes

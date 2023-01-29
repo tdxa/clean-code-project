@@ -1,17 +1,25 @@
 @use '../../styles/main';
-// @import url('https://fonts.googleapis.com/css?family=Roboto');
-
-.wrapper {
-  width: inherit;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-}
 
 .topbar {
   display: flex;
   align-items: center;
   margin: 10px 0;
+}
+
+.topbar-content {
+  width: 100%;
+}
+
+.topbar-search-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.topbar-search-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .topbar-logo {
@@ -31,27 +39,6 @@
   letter-spacing: 3px;
   font-family: 'Odibee Sans';
   color: main.$primary-color;
-}
-
-.topbar-content {
-  width: 100%;
-}
-
-.topbar-main {
-  float: right;
-  display: flex;
-  align-items: center;
-  color: main.$font-color-primary;
-}
-
-.topbar-buttons {
-  display: inherit;
-  gap: 10px;
-  margin-right: 10px;
-}
-
-.topbar-item {
-  margin-right: 30px;
 }
 
 .sidebar-container {

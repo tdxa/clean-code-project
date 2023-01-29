@@ -1,7 +1,11 @@
 import * as styles from '../layout.module.scss';
 import { AppBar, IconButton, Toolbar } from '@mui/material';
 import React, { FC, useState } from 'react';
+import LoginModal from '../../Authentication/Login';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import PrimaryButton from '../../Common/Buttons/PrimaryButton';
+import RegisterModal from '../../Authentication/Register';
+import SearchBar from '../../SearchEngine/SearchBar';
 import { drawerWidth } from '../utils';
 import { muiStylesLayout } from '../muiStylesLayout';
 import { useIsMobile } from '../../../utils';
@@ -18,7 +22,17 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
 
   return (
     <>
-      {isMobile && (
+      <LoginModal
+        open={openLogin}
+        handleClose={() => setOpenLogin(false)}
+        redirect={() => setOpenRegister(true)}
+      />
+      <RegisterModal
+        open={openRegister}
+        handleClose={() => setOpenRegister(false)}
+        redirect={() => setOpenLogin(true)}
+      />
+      {isMobile ? (
         <AppBar
           position='fixed'
           sx={{
@@ -40,6 +54,19 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
             <h2 className={styles.topbarText}>Garnuszek</h2>
           </Toolbar>
         </AppBar>
+      ) : (
+        <div className={styles.topbarSearchContainer}>
+          <SearchBar />
+          <div className={styles.topbarSearchButtons}>
+            <span role='button' onClick={() => setOpenRegister(true)}>
+              <h4>Zarejestruj się</h4>
+            </span>
+            <PrimaryButton
+              text='Zaloguj się'
+              event={() => setOpenLogin(true)}
+            />
+          </div>
+        </div>
       )}
     </>
   );
