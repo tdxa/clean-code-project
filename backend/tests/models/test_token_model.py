@@ -1,4 +1,5 @@
 import pytest
+
 from models.token_model import Token, TokenData
 
 

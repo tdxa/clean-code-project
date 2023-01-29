@@ -1,6 +1,4 @@
 from typing import Any, Mapping
-from models.shared_model import PyObjectId
-from models.recipe_model import RecipeResponse
 
 from bson.objectid import ObjectId
 from pymongo.cursor import Cursor
@@ -9,6 +7,8 @@ from pymongo.errors import BulkWriteError, DuplicateKeyError
 
 from exceptions import RecipeAlreadyExist
 from models import Recipe
+from models.recipe_model import RecipeResponse
+from models.shared_model import PyObjectId
 from scraper import RecipeScraper
 
 
