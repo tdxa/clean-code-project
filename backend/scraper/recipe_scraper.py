@@ -32,6 +32,12 @@ class RecipeScraper:
         """
         return self.soup.find('h1').text
 
+    def get_image_link(self) -> str:
+        """
+        Returns link to the recipe image
+        """
+        return self.soup.find("img", {"class": "recipeDetailImage"})['src']
+
     def get_ingredients(self) -> list[list[str]]:
         """
         Returns all ingredients of the recipe
@@ -74,7 +80,7 @@ class RecipeScraper:
             'data-test': 'recipeDetail__instructionsContainer',
         })
         preparation_instruction = preparation_instruction_container.find_all('li')
-        return [self._remove_recommendation_sentence(step.text) for step in preparation_instruction]
+        return [re.sub('  +','',self._remove_recommendation_sentence(step.text).strip()) for step in preparation_instruction]
 
     def get_tags(self) -> list[str]:
         """

@@ -17,7 +17,7 @@ IdType = str | ObjectId | bytes | None
 
 class RecipesService:
     """Class for managing recipes in database"""
-    COLLECTION_NAME = 'RecipesCollection'
+    COLLECTION_NAME = 'ExtendedRecipesCollection'
 
     def __init__(self, database: Database) -> None:
         """Initializes the database connection"""
@@ -100,8 +100,10 @@ class RecipesService:
         """Calls scraper to get recipe from given url"""
         return Recipe(
             name=scraper.get_name(),
+            image_url = scraper.get_image_link(),
+            url=scraper.url,
             ingredients=scraper.get_ingredients(),
             nutritional_values=scraper.get_nutritional_values(),
-            preparation_instruction=scraper.get_preparation_instruction(),
+            preparation_method=scraper.get_preparation_instruction(),
             tags=scraper.get_tags(),
         )
