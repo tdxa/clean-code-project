@@ -37,7 +37,12 @@ export function isAxiosError(error: any): error is AxiosError {
 const instance = axios.create({
   baseURL: process.env.API_URL ? process.env.API_URL : undefined,
   timeout: 30000,
-  withCredentials: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Content-Type': 'application/json',
+  },
 });
 
 export default instance;
