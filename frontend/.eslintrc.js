@@ -29,6 +29,14 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-unsafe-assignment': 0,
     '@typescript-eslint/no-shadow': 2,
+    '@typescript-eslint/no-misused-promises': [
+      2,
+      {
+        checksVoidReturn: {
+          attributes: false,
+        },
+      },
+    ],
     'react/prop-types': 0,
     'no-shadow': 0,
     'sort-imports': 1,

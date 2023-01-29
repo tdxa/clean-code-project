@@ -1,7 +1,6 @@
 import * as styles from '../layout.module.scss';
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
-import React, { FC } from 'react';
-import LogoText from '../../../images/logo/logo-text-green.svg';
+import { AppBar, IconButton, Toolbar } from '@mui/material';
+import React, { FC, useState } from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { drawerWidth } from '../utils';
 import { muiStylesLayout } from '../muiStylesLayout';
@@ -13,6 +12,9 @@ interface Props {
 
 const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
   const isMobile = useIsMobile();
+
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openRegister, setOpenRegister] = useState(false);
 
   return (
     <>

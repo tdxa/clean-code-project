@@ -1,0 +1,22 @@
+@use '../../styles/main';
+
+.container {
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  background: #606c38;
+  color: #fcf5ee;
+  border-radius: 25px;
+  box-shadow: main.$shadow-card;
+}
+
+.container-text {
+  padding: 30px;
+  width: 70%;
+}
+
+.img-banner {
+  position: absolute;
+  right: 100px;
+  top: 0%;
+}

@@ -17,8 +17,6 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import GarnuszekLogo from '../../../images/logo/logo-full-green.svg';
 import { muiStylesLayout } from '../muiStylesLayout';
-import { useDispatch } from 'react-redux';
-import { useIsMobile } from '../../../utils';
 
 interface Props {
   open: boolean;
@@ -26,9 +24,6 @@ interface Props {
 }
 
 const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
-  const dispatch = useDispatch();
-  const isMobile = useIsMobile();
-
   const handleLogout = () => {
     console.log('logout');
   };
