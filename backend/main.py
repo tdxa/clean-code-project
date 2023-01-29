@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.auth import router as user_router
 from api.recipes import recipes_router
 
+
 app = FastAPI()
 
 app.add_middleware(

@@ -86,7 +86,6 @@ class RecipeScraper:
         tags = tags_container.find_all('a')
         return [tag.text for tag in tags]
 
-
     def download_recipes_from_url(self, url: str) -> list[Recipe]:
         """
         Returns recipes from given url to the database

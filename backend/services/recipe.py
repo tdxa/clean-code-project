@@ -38,7 +38,7 @@ class RecipesService:
     def get_one_by_name(self, name: str) -> Cursor[Mapping[str, Any] | Any]:
         """Returns all recipes with given name"""
         return self.collection.find_one({'name': name})
-    
+
     def get_all_tags(self) -> list[str]:
         """Returns all available tags"""
         return self.collection.distinct("tags")
@@ -50,15 +50,10 @@ class RecipesService:
     def get_random_recipe(self) -> RecipeResponse:
         """Returns random recipe from database"""
         return list(self.collection.aggregate(pipeline=[{"$sample": {"size": 1}}]))[0]
-       
 
     def get_all_by_ingredient(self, ingredient: str) -> Cursor[Mapping[str, Any] | Any]:
         """Returns all recipes with given ingredient"""
         return self.collection.find({'ingredients': ingredient})
-
-    def get_one_by_name(self, name: str):
-        """Returns recipe with a given name"""
-        return self.collection.find_one({"name": name})
 
     def insert_one(self, recipe: Recipe) -> RecipeResponse:
         """Inserts one recipe to the database"""
@@ -68,7 +63,7 @@ class RecipesService:
         except DuplicateKeyError:
             raise RecipeAlreadyExist(recipe.name)
 
-    def insert_many(self, recipes: list[Recipe]):
+    def insert_many(self, recipes: list[Recipe]) -> None:
         """Inserts many recipes to the database"""
         recipes_as_dicts = map(lambda x: x.dict(), recipes)
         try:
@@ -77,7 +72,7 @@ class RecipesService:
             for recipe in recipes:
                 self.insert_one(recipe)
 
-    def update_one(self, id: PyObjectId, data: Recipe):
+    def update_one(self, id: PyObjectId, data: Recipe) -> Recipe:
         """Updates one recipe in the database"""
         if (
             self.collection.update_one(
@@ -87,11 +82,11 @@ class RecipesService:
         ):
             return data
 
-    def delete_one_by_id(self, id: str):
+    def delete_one_by_id(self, id: str) -> None:
         """Deletes one recipe from the database by id"""
         self.collection.delete_one({"_id": ObjectId(id)})
 
-    def delete_all(self):
+    def delete_all(self) -> None:
         """Deletes all recipes from the database"""
         return self.collection.delete_many({})
 

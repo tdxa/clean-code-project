@@ -23,6 +23,9 @@ class RecipeResponse(Recipe):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
 
     class Config:
+        """
+        Config for RecipeResponse class
+        """
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}

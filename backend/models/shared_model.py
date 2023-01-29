@@ -11,6 +11,7 @@ class PyObjectId(ObjectId):
 
     @classmethod
     def validate(cls, v):
+        """Validates given value"""
         if not ObjectId.is_valid(v):
             raise ValueError("Invalid format of ObjectId")
         return ObjectId(v)
