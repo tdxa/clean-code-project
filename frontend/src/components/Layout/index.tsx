@@ -1,12 +1,11 @@
+import * as styles from './layout.module.scss';
 import React, { FC, ReactNode, useEffect, useState } from 'react';
-
+import BlueBackground from '../../images/background.png';
 import { Box } from '@mui/material';
 import GarnuszekLogo from '../../images/logo/logo-full-green.svg';
-import BlueBackground from '../../images/background.png';
-import * as styles from './layout.module.scss';
+import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { useIsMobile } from '../../utils';
-import Sidebar from './Sidebar';
 
 interface Props {
   children: ReactNode;
