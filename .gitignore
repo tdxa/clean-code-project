@@ -5,6 +5,7 @@ __pycache__
 .coverage.*
 .coverage
 flake8-report/
+coverage-report/
 
 # Environments
 .env
