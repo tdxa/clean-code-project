@@ -10,12 +10,15 @@ export type NutritionalValue =
 type Ingredient = string[];
 
 export interface Recipe {
+  _id: string;
   url: string;
   name: string;
   ingredients: Ingredient[];
   nutritional_values: Record<NutritionalValue, string>;
+  preparation_method: string[];
+  tags: string[];
 }
 
 export interface RandomRecipeState extends BaseApiState {
-  recipe: Recipe;
+  recipe?: Recipe;
 }

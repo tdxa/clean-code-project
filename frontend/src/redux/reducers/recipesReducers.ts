@@ -1,10 +1,10 @@
+import { handlePending, handleReject } from '../../utils/redux';
 import { RandomRecipeState } from '../../api/recipeAPI';
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchRandomRecipe } from '../actions/recipeActions';
-import { handlePending } from '../../utils/redux';
 
 const initialState: RandomRecipeState = {
-  recipe: {},
+  recipe: undefined,
   succeeded: false,
   loading: false,
   error: false,
@@ -19,9 +19,12 @@ const RandomRecipeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRandomRecipe.fulfilled, (state, action) => {
-        console.log(action);
+        state.recipe = action.payload;
+        state.succeeded = true;
+        state.loading = false;
       })
-      .addCase(fetchRandomRecipe.pending, handlePending);
+      .addCase(fetchRandomRecipe.pending, handlePending)
+      .addCase(fetchRandomRecipe.rejected, handleReject);
   },
 });
 

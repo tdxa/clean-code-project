@@ -1,25 +1,33 @@
-import instance, { ApiError, isAxiosError } from '../../api/axiosConfig';
+import instance, {
+  ApiError,
+  ApiResponse,
+  AsyncThunkConfig,
+  isAxiosError,
+} from '../../api/axiosConfig';
+import Recipe from '../../components/Recipe';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { dispatchNotification } from '../../utils/redux';
 import { randomRecipeAPI } from '../../utils/paths';
 
-export const fetchRandomRecipe = createAsyncThunk(
-  'recipe/random/get',
-  async (_, thunkAPI) => {
-    try {
-      const response = await instance.get(randomRecipeAPI);
-      return response;
-    } catch (err) {
-      if (isAxiosError(err) && err.response != null) {
-        const extractedError = err.response.data as ApiError;
+export const fetchRandomRecipe = createAsyncThunk<
+  ApiResponse<Recipe>,
+  undefined,
+  AsyncThunkConfig
+>('recipe/random/get', async (_, thunkAPI) => {
+  try {
+    const response = await instance.get<ApiResponse<Recipe>>(randomRecipeAPI);
 
-        dispatchNotification('error', extractedError.message, true);
+    return response.data;
+  } catch (err) {
+    if (isAxiosError(err) && err.response != null) {
+      const extractedError = err.response.data as ApiError;
 
-        return thunkAPI.rejectWithValue(extractedError);
-      }
+      dispatchNotification('error', extractedError.message, true);
 
-      dispatchNotification('error');
-      throw err;
+      return thunkAPI.rejectWithValue(extractedError);
     }
+
+    dispatchNotification('error');
+    throw err;
   }
-);
+});
