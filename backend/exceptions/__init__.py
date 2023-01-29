@@ -1,5 +1,5 @@
 from .db_exceptions import RecipeAlreadyExist
-from .http_exceptions import InvalidCredentialsException, UsernameConflictException, RecipeNotFoundException
+from .http_exceptions import InvalidCredentialsException, RecipeNotFoundException, UsernameConflictException
 
 
 __all__ = [

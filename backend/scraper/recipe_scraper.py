@@ -1,5 +1,6 @@
-import requests
 import re
+
+import requests
 from bs4 import BeautifulSoup
 
 from models import NutritionalValues, Recipe
@@ -84,7 +85,6 @@ class RecipeScraper:
         tags_container = self.soup.find('div', {'class': 'recipeDetailTags'})
         tags = tags_container.find_all('a')
         return [tag.text for tag in tags]
-
 
     def download_recipes_from_url(self, url: str) -> list[Recipe]:
         """

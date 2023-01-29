@@ -4,4 +4,6 @@
 /venv
 /flake-report
 /src
+/tests
 /README.md
+/coverage-report
