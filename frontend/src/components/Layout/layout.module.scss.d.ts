@@ -8,6 +8,7 @@ export const itemHidden: string;
 export const wrapper: string;
 export const topbar: string;
 export const topbarLogo: string;
+export const topbarText: string;
 export const topbarContent: string;
 export const topbarMain: string;
 export const topbarButtons: string;

@@ -1,5 +1,6 @@
 import * as styles from '../layout.module.scss';
 import {
+  Box,
   Drawer,
   List,
   ListItem,
@@ -8,8 +9,13 @@ import {
   ListItemText,
 } from '@mui/material';
 import React, { FC } from 'react';
-import { sideBarListBottomItems, sideBarListUpperItems } from '../utils';
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  drawerWidth,
+  sideBarListBottomItems,
+  sideBarListUpperItems,
+} from '../utils';
+import CloseIcon from '@mui/icons-material/Close';
+import GarnuszekLogo from '../../../images/logo/logo-full-green.svg';
 import { muiStylesLayout } from '../muiStylesLayout';
 import { useDispatch } from 'react-redux';
 import { useIsMobile } from '../../../utils';
@@ -27,15 +33,63 @@ const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
     console.log('logout');
   };
 
-  const drawerItems = () => {
+  const drawerItemsMobile = () => {
     return (
       <div className={styles.sidebarContainer}>
         <div>
-          <ListItem>
-            <ListItemIcon onClick={toggleDrawer} sx={muiStylesLayout.iconItem}>
-              <MenuIcon />
+          <ListItem sx={muiStylesLayout.iconMenu}>
+            <ListItemIcon
+              onClick={toggleDrawer}
+              sx={muiStylesLayout.iconMenu.svg}
+            >
+              <CloseIcon />
             </ListItemIcon>
           </ListItem>
+          <div className={styles.topbarLogo}>
+            <GarnuszekLogo />
+          </div>
+          <List>
+            {sideBarListUpperItems.map((item) => {
+              return (
+                <ListItemButton
+                  key={`${item.name}-item-upper-sidebar`}
+                  onClick={item.event}
+                >
+                  <ListItemIcon sx={muiStylesLayout.iconItem}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              );
+            })}
+          </List>
+        </div>
+        <List sx={muiStylesLayout.bottomItems}>
+          {sideBarListBottomItems.map((item) => {
+            return (
+              <ListItemButton
+                key={`${item.name}-item-bottom-sidebar`}
+                onClick={item.name !== 'logout' ? item.event : handleLogout}
+              >
+                <ListItemIcon sx={muiStylesLayout.iconItem}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItemButton>
+            );
+          })}
+        </List>
+      </div>
+    );
+  };
+
+  const drawerItemsDesktop = () => {
+    return (
+      <div className={styles.sidebarContainer}>
+        <div>
+          <div className={styles.topbarLogo}>
+            <GarnuszekLogo />
+          </div>
           <List>
             {sideBarListUpperItems.map((item) => {
               return (
@@ -72,9 +126,36 @@ const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
   };
 
   return (
-    <Drawer anchor='right' open={open} onClose={toggleDrawer}>
-      {drawerItems()}
-    </Drawer>
+    <Box
+      component='nav'
+      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+    >
+      <Drawer
+        anchor='left'
+        variant='temporary'
+        open={open}
+        onClose={toggleDrawer}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          'display': { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+        }}
+      >
+        {drawerItemsMobile()}
+      </Drawer>
+      <Drawer
+        variant='permanent'
+        sx={{
+          'display': { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+        }}
+        open
+      >
+        {drawerItemsDesktop()}
+      </Drawer>
+    </Box>
   );
 };
 

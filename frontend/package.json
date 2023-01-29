@@ -10,6 +10,7 @@
     "@mui/material": "^5.5.3",
     "@reduxjs/toolkit": "^1.8.1",
     "gatsby": "^4.14.1",
+    "gatsby-omni-font-loader": "^2.0.2",
     "gatsby-plugin-dts-css-modules": "^2.2.0",
     "gatsby-plugin-gatsby-cloud": "^4.11.1",
     "gatsby-plugin-image": "^2.11.1",

@@ -1,43 +1,22 @@
-import React from 'react';
-import FolderIcon from '@mui/icons-material/Folder';
-import HelpIcon from '@mui/icons-material/Help';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
-import LogoutIcon from '@mui/icons-material/Logout';
-import SettingsIcon from '@mui/icons-material/Settings';
+import React from 'react';
 
 export const drawerWidth = 240;
 
 export const sideBarListUpperItems = [
   {
-    name: 'dashboard',
+    name: 'homepage',
     icon: <HomeIcon />,
-    text: 'oe',
+    text: 'Strona główna',
     event: () => console.log('folders'),
   },
   {
-    name: 'folders',
-    icon: <FolderIcon />,
-    text: 'fsjfksxkjfs',
+    name: 'favorite',
+    icon: <FavoriteIcon />,
+    text: 'Ulubione przepisy',
     event: () => console.log('folders'),
   },
 ];
 
-export const sideBarListBottomItems = [
-  {
-    name: 'help',
-    icon: <HelpIcon />,
-    text: 'lalala',
-    event: () => console.log('folders'),
-  },
-  {
-    name: 'settings',
-    icon: <SettingsIcon />,
-    text: 'hhehe',
-    event: () => console.log('settings'),
-  },
-  {
-    name: 'logout',
-    icon: <LogoutIcon />,
-    text: 'Log out',
-  },
-];
+export const sideBarListBottomItems = [];

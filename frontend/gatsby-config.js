@@ -28,7 +28,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/logo/diamond.svg`, // This path is relative to the root of the site.
+        icon: `src/images/logo/logo-full-green.svg`, // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-sass',
@@ -45,6 +45,22 @@ module.exports = {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         include: '/images/.*.svg/',
+      },
+    },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [
+          `https://fonts.googleapis.com`,
+          `https://fonts.gstatic.com`,
+        ],
+        web: [
+          {
+            name: `Odibee Sans`,
+            file: `https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap`,
+          },
+        ],
       },
     },
 
