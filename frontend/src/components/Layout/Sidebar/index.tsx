@@ -64,21 +64,6 @@ const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
             })}
           </List>
         </div>
-        <List sx={muiStylesLayout.bottomItems}>
-          {sideBarListBottomItems.map((item) => {
-            return (
-              <ListItemButton
-                key={`${item.name}-item-bottom-sidebar`}
-                onClick={item.name !== 'logout' ? item.event : handleLogout}
-              >
-                <ListItemIcon sx={muiStylesLayout.iconItem}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            );
-          })}
-        </List>
       </div>
     );
   };
@@ -106,21 +91,6 @@ const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
             })}
           </List>
         </div>
-        <List sx={muiStylesLayout.bottomItems}>
-          {sideBarListBottomItems.map((item) => {
-            return (
-              <ListItemButton
-                key={`${item.name}-item-bottom-sidebar`}
-                onClick={item.name !== 'logout' ? item.event : handleLogout}
-              >
-                <ListItemIcon sx={muiStylesLayout.iconItem}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            );
-          })}
-        </List>
       </div>
     );
   };
