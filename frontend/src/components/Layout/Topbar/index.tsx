@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
-import { IconButton, MenuItem } from '@mui/material';
 import * as styles from '../layout.module.scss';
+import { IconButton, MenuItem } from '@mui/material';
+import React, { FC } from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import { useIsMobile } from '../../../utils';
-import TertiaryButton from '../../Common/Buttons/TertiaryButton';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
+import TertiaryButton from '../../Common/Buttons/TertiaryButton';
 import { muiStylesLayout } from '../muiStylesLayout';
+import { useIsMobile } from '../../../utils';
 
 interface Props {
   handleDrawerToggle?: () => void;
@@ -31,8 +31,8 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
           <MenuItem>About</MenuItem>
           <MenuItem>How it works</MenuItem>
           <div className={styles.topbarButtons}>
-            <TertiaryButton text='Log in' />
-            <PrimaryButton text='Sign up' />
+            <TertiaryButton text='Zaloguj się' />
+            <PrimaryButton text='Zarejestruj się' />
           </div>
         </>
       )}
