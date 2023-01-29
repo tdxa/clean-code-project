@@ -10,36 +10,27 @@ from models.token_model import TokenData
 
 
 class Auth:
-    """
-    Class responsible for handling auth operations
-    """
-
+    """Class responsible for handling auth operations"""
     def __init__(self) -> None:
-        """
-        Initializes CryptContext usign bcrypt scheme
-        """
+        """Initializes CryptContext usign bcrypt scheme"""
         self.pwd_context = CryptContext(schemes=["bcrypt"])
 
     def encode_password(self, password: str) -> str:
         """
         Encodes provided plaintext to hash
 
-        Args:
-            password (str): plaintext
-
-        Returns:
-            str: hashed password
+        :param password: plaintext
+        :return: hashed password
         """
         return self.pwd_context.hash(password)
 
     def verify_password(self, password: str, encoded_password: str) -> bool:
         """
         Verifies the provided plaintext password against the encrypted password.
-        Args:
-            password (str): plaintext password to verify
-            encoded_password (str): encrypted password
-        Returns:
-            bool: True if the password is valid, False otherwise
+
+        :param password: plaintext password to verify
+        :param encoded_password: encrypted password
+        :return: True if the password is valid, False otherwise
         """
         return self.pwd_context.verify(password, encoded_password)
 
@@ -48,12 +39,11 @@ class Auth:
     ) -> str:
         """
         Encodes a JWT token with given data and expiration time
-        Args:
-            data (dict): data to be encoded in the token
-            expires_delta (timedelta): time until the token expires. If not provided, default to 30 minutes
 
-        Returns:
-            str: Encoded JWT token
+        :param data: data to be encoded in the token
+        :param expires_delta: time until the token expires. If not provided, default to 30 minutes,
+                              defaults to None
+        :return: Encoded JWT token
         """
         to_encode = data.copy()
         if expires_delta:
@@ -72,11 +62,8 @@ class Auth:
         """
         Verifies and decodes a JWT token
 
-        Args:
-            token (str): The JWT token to decode and validate
-
-        Returns:
-            TokenData: Decoded token content
+        :param token: The JWT token to decode and validate
+        :return: Decoded token content
         """
         try:
             payload = jwt.decode(

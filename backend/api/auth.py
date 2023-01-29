@@ -21,15 +21,12 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 @router.post("/token", response_model=Token)
-async def login_for_access_token(request: OAuth2PasswordRequestForm = Depends()):
+async def login_for_access_token(request: OAuth2PasswordRequestForm = Depends()) -> Token:
     """
     Login and receive access token
 
-    Args:
-        request (OAuth2PasswordRequestForm, optional): request payload containting the username and password
-
-    Returns:
-        Token:  token object containing access_token and token_type
+    :param request: request payload containting the username and password, defaults to Depends()
+    :return: token object containing access_token and token_type
     """
     user = users_collection.find_one({"username": request.username})
     if not (user and auth.verify_password(request.password, user["password"])):
@@ -45,11 +42,8 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
     """
     Retrieve current user details from JWT token
 
-    Args:
-        token (str, optional): encoded JWT token
-
-    Returns:
-        User: user details
+    :param token: encoded JWT token, defaults to Depends(oauth2_scheme)\
+    :return: user details
     """
     token_data = auth.decode_token(token)
     user = users_collection.find_one({"username": token_data.username})
@@ -63,16 +57,19 @@ async def read_current_user(current_user: User = Depends(get_current_user)) -> U
     """
     Retrieves current user information
 
-    Returns:
-        User: user details
+    :param current_user: currently logged in user, defaults to Depends(get_current_user)
+    :return: user details
     """
     return current_user
 
 
 @router.get("/test-secured")
-async def test_secured(current_user: User = Depends(get_current_user)):
+async def test_secured(current_user: User = Depends(get_current_user)) -> dict:
     """
     Sample endpoint for testing auth
+
+    :param current_user: currently logged in user, defaults to Depends(get_current_user)
+    :return: dict
     """
     return {
         "Securent content": f"secured_content accesed as {current_user['username']}"
@@ -84,11 +81,8 @@ async def create_user(request: UserCreate) -> User:
     """
     Register a new user
 
-    Args:
-        request (UserCreate): user information
-
-    Returns:
-        User: registered user details
+    :param request: user information
+    :return: registered user details
     """
     if users_collection.find_one({"username": request.username}) is not None:
         raise UsernameConflictException
