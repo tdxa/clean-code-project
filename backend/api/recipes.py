@@ -1,8 +1,10 @@
-from fastapi import APIRouter
-from services import RecipesService
-from models.recipe_model import RecipeResponse, Recipe, PyObjectId
-from exceptions import RecipeNotFoundException
 from database import database
+from exceptions import RecipeNotFoundException
+from fastapi import APIRouter, Depends
+from models import CommonQueryParams
+from models.pagination_model import PaginationContent
+from models.recipe_model import PyObjectId, Recipe, RecipeResponse
+from services import RecipesService
 
 recipe_service = RecipesService(database)
 recipes_router = APIRouter()
@@ -27,9 +29,9 @@ async def get_recipe_by_id(id: PyObjectId) -> RecipeResponse:
     return res
 
 
-@recipes_router.get("/recipes")
-async def get_all_recipes() -> list[RecipeResponse]:
-    return recipe_service.get_all()
+@recipes_router.get("/recipes", response_model=PaginationContent)
+async def get_all_recipes(params: CommonQueryParams = Depends()) -> PaginationContent:
+    return recipe_service.get_all(params)
 
 
 @recipes_router.get("/recipes/name/{name}")
@@ -52,8 +54,10 @@ async def get_all_recipes_tags():
 
 
 @recipes_router.get("/recipes/tag/{tag}")
-async def get_all_recipes_by_tag(tag: str):
-    return recipe_service.get_all_by_tag(tag)
+async def get_all_recipes_by_tag(
+    tag: str, params: CommonQueryParams = Depends()
+) -> PaginationContent:
+    return recipe_service.get_all_by_tag(params, tag)
 
 
 @recipes_router.patch("/recipes/{id}")
