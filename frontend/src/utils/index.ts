@@ -1,5 +1,4 @@
 import { useMediaQuery } from '@mui/material';
-import { navigate } from 'gatsby-link';
 
 const breakpointValuePx = 768;
 

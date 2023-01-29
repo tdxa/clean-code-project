@@ -1,8 +1,8 @@
-import React from 'react';
 import FolderIcon from '@mui/icons-material/Folder';
 import HelpIcon from '@mui/icons-material/Help';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import React from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 export const drawerWidth = 240;
@@ -11,7 +11,7 @@ export const sideBarListUpperItems = [
   {
     name: 'dashboard',
     icon: <HomeIcon />,
-    text: 'oe',
+    text: 'Strona główna',
     event: () => console.log('folders'),
   },
   {

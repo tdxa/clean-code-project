@@ -1,0 +1,15 @@
+@use '../../styles/main.scss';
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 1000%;
+}
+
+.field-container {
+  width: 230px;
+}
