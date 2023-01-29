@@ -1,3 +1,4 @@
+import * as styles from '../authentication.module.scss';
 import {
   Box,
   Dialog,
@@ -5,27 +6,18 @@ import {
   DialogTitle,
   IconButton,
   InputAdornment,
-  TextField,
 } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
+import { ModalProps, RegisterData } from '../types';
 import React, { FC, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import FormInputText from '../../Common/Inputs/TextInput';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { muiStylesAuthentication } from '../muiStylesAuthentication';
+import { useForm } from 'react-hook-form';
 
-interface Props {
-  open: boolean;
-  handleClose: () => void;
-  redirect: () => void;
-}
-interface RegisterData {
-  email: string;
-  firstName: string;
-  password: string;
-}
-
-const RegisterModal: FC<Props> = ({ open, handleClose, redirect }) => {
+const RegisterModal: FC<ModalProps> = ({ open, handleClose, redirect }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -50,8 +42,8 @@ const RegisterModal: FC<Props> = ({ open, handleClose, redirect }) => {
   const onSubmit = (data: RegisterData) => console.log(data);
 
   return (
-    <Dialog fullWidth maxWidth='lg' open={open} onClose={handleClose}>
-      <DialogTitle>
+    <Dialog fullWidth maxWidth='sm' open={open} onClose={handleClose}>
+      <DialogTitle sx={muiStylesAuthentication.title}>
         Zarejestruj się
         <IconButton
           aria-label='close'
@@ -67,57 +59,44 @@ const RegisterModal: FC<Props> = ({ open, handleClose, redirect }) => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <Box>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Controller
-              name='email'
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  autoComplete='off'
-                  type='email'
-                  label='E-mail'
-                  {...field}
-                />
-              )}
-            />
-            <Controller
-              name='firstName'
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  autoComplete='off'
-                  type='text'
-                  label='Imię'
-                  {...field}
-                />
-              )}
-            />
-            <Controller
-              name='password'
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  type={showPassword ? 'text' : 'password'}
-                  label='hasło'
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position='end'>
-                        <IconButton
-                          aria-label='toggle password visibility'
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge='end'
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  {...field}
-                />
-              )}
-            />
+        <Box sx={muiStylesAuthentication.container}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.formContainer}
+          >
+            <div className={styles.fieldContainer}>
+              <FormInputText
+                control={control}
+                name='email'
+                type='email'
+                label='E-mail'
+              />
+            </div>
+            <div className={styles.fieldContainer}>
+              <FormInputText control={control} name='firstName' label='Imię' />
+            </div>
+            <div className={styles.fieldContainer}>
+              <FormInputText
+                control={control}
+                name='password'
+                type='password'
+                label='Hasło'
+                inputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton
+                        aria-label='toggle password visibility'
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge='end'
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
             <p>
               Posiadasz już konto?{' '}
               <span

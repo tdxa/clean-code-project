@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { muiStylesButtons } from '../muiStylesButtons';
 import { Button } from '@mui/material';
+import { muiStylesButtons } from '../muiStylesButtons';
 
 interface Props {
   text: string;

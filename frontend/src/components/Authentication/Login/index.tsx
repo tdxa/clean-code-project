@@ -1,3 +1,4 @@
+import * as styles from '../authentication.module.scss';
 import {
   Box,
   Dialog,
@@ -5,26 +6,18 @@ import {
   DialogTitle,
   IconButton,
   InputAdornment,
-  TextField,
 } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
+import { LoginData, ModalProps } from '../types';
 import React, { FC, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import FormInputText from '../../Common/Inputs/TextInput';
 import PrimaryButton from '../../Common/Buttons/PrimaryButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { muiStylesAuthentication } from '../muiStylesAuthentication';
+import { useForm } from 'react-hook-form';
 
-interface Props {
-  open: boolean;
-  handleClose: () => void;
-  redirect: () => void;
-}
-interface LoginData {
-  email: string;
-  password: string;
-}
-
-const LoginModal: FC<Props> = ({ open, handleClose, redirect }) => {
+const LoginModal: FC<ModalProps> = ({ open, handleClose, redirect }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -48,8 +41,8 @@ const LoginModal: FC<Props> = ({ open, handleClose, redirect }) => {
   const onSubmit = (data: LoginData) => console.log(data);
 
   return (
-    <Dialog fullWidth maxWidth='lg' open={open} onClose={handleClose}>
-      <DialogTitle>
+    <Dialog fullWidth maxWidth='sm' open={open} onClose={handleClose}>
+      <DialogTitle sx={muiStylesAuthentication.title}>
         Zaloguj się{' '}
         <IconButton
           aria-label='close'
@@ -65,45 +58,41 @@ const LoginModal: FC<Props> = ({ open, handleClose, redirect }) => {
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <Box>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Controller
-              name='email'
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  type='email'
-                  autoComplete='off'
-                  label='E-mail'
-                  {...field}
-                />
-              )}
-            />
-            <Controller
-              name='password'
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  type={showPassword ? 'text' : 'password'}
-                  label='hasło'
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position='end'>
-                        <IconButton
-                          aria-label='toggle password visibility'
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge='end'
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  {...field}
-                />
-              )}
-            />
+        <Box sx={muiStylesAuthentication.container}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.formContainer}
+          >
+            <div className={styles.fieldContainer}>
+              <FormInputText
+                control={control}
+                name='email'
+                type='email'
+                label='E-mail'
+              />
+            </div>
+            <div className={styles.fieldContainer}>
+              <FormInputText
+                control={control}
+                name='password'
+                type='password'
+                label='Hasło'
+                inputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <IconButton
+                        aria-label='toggle password visibility'
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge='end'
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
             <p>
               Nie posiadasz konta?{' '}
               <span

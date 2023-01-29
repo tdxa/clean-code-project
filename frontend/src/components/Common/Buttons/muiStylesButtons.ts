@@ -14,7 +14,6 @@ import {
   secondaryColorDisabled,
   secondaryColorFocused,
   secondaryColorHover,
-  shadowButton,
 } from '../../../styles/mui/mui-variables';
 
 const commonButtonProperties = {

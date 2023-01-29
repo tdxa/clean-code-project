@@ -43,7 +43,7 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
           </div>
         ) : (
           <>
-            <MenuItem>Home</MenuItem>
+            <MenuItem>Strona główna</MenuItem>
             <MenuItem>About</MenuItem>
             <MenuItem>How it works</MenuItem>
             <div className={styles.topbarButtons}>

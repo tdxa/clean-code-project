@@ -11,8 +11,6 @@ import React, { FC } from 'react';
 import { sideBarListBottomItems, sideBarListUpperItems } from '../utils';
 import MenuIcon from '@mui/icons-material/Menu';
 import { muiStylesLayout } from '../muiStylesLayout';
-import { useDispatch } from 'react-redux';
-import { useIsMobile } from '../../../utils';
 
 interface Props {
   open: boolean;
@@ -20,9 +18,6 @@ interface Props {
 }
 
 const Sidebar: FC<Props> = ({ open, toggleDrawer }) => {
-  const dispatch = useDispatch();
-  const isMobile = useIsMobile();
-
   const handleLogout = () => {
     console.log('logout');
   };
