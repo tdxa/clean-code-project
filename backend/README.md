@@ -1,3 +1,19 @@
+# Usage
+
+Download the repository and get into the backend directory:
+
+```
+git clone https://github.com/tdxa/clean-code-project.git
+cd clean-code-project/backend
+```
+
+To use this API you should use Docker and run it as below:
+
+```
+docker build -t api .
+docker run -p 8000:8000 api
+```
+
 # Developer information
 
 This file contains developer information for the repository.
@@ -29,7 +45,7 @@ poetry install
 To activate virtual env:
 
 ```
-source .venv/bin/activate 
+source .venv/bin/activate
 or
 .venv\Scripts\activate
 ```
