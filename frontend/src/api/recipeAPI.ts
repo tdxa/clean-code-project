@@ -14,11 +14,11 @@ export interface Recipe {
   url: string;
   name: string;
   ingredients: Ingredient[];
-  nutritional_values: Record<NutritionalValue, string>;
+  nutritional_values: Record<string, string>;
   preparation_method: string[];
   tags: string[];
 }
 
-export interface RandomRecipeState extends BaseApiState {
+export interface RecipeState extends BaseApiState {
   recipe?: Recipe;
 }

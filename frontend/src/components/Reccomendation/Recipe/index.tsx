@@ -4,6 +4,8 @@ import CookingSVG from '../../../images/cooking.svg';
 import Ingredient from '../Ingredient';
 import { Recipe } from '../../../api/recipeAPI';
 import WhiteCard from '../../Common/WhiteCard';
+import { handleNavigateToRecipePage, recipePage } from '../../../utils/paths';
+import { Link } from '@reach/router';
 
 interface Props {
   recipe: Recipe;
@@ -37,18 +39,24 @@ const RecipePreview: FC<Props> = ({ recipe }) => {
 
   return (
     <WhiteCard>
-      <div className={styles.containerRecipe}>
-        <div className={styles.containerTitle}>
-          <CookingSVG />
-          <div>
-            <h3>{recipe.name}</h3>
-            <p>{recipe.nutritional_values.calories}</p>
+      <Link to={`${recipePage}/${recipe._id}`}>
+        <div
+          className={styles.containerRecipe}
+          // onClick={() => handleNavigateToRecipePage(recipe._id)}
+          // role='button'
+        >
+          <div className={styles.containerTitle}>
+            <CookingSVG />
+            <div>
+              <h3>{recipe.name}</h3>
+              <p>{recipe.nutritional_values.calories}</p>
+            </div>
+          </div>
+          <div className={styles.containerIngredients}>
+            {generateIngredients()}
           </div>
         </div>
-        <div className={styles.containerIngredients}>
-          {generateIngredients()}
-        </div>
-      </div>
+      </Link>
     </WhiteCard>
   );
 };

@@ -8,10 +8,15 @@ export const loginAPI = '/token';
 export const registerAPI = '/register';
 // gatsby pages' paths
 export const homepagePath = '/';
+export const recipePage = '/recipe';
 
 // navigation handlers
 export const handleNavigateToPreviousPage = () => navigate(-1);
 
 export const handleNavigateToPage = (path: string) => {
   void navigate(path);
+};
+
+export const handleNavigateToRecipePage = (id: string) => {
+  void navigate(`${recipePage}/${id}`);
 };

@@ -1,9 +1,9 @@
-import { handlePending, handleReject } from '../../utils/redux';
-import { RandomRecipeState } from '../../api/recipeAPI';
+import { handlePending, handleReject } from '../../../utils/redux';
+import { RecipeState } from '../../../api/recipeAPI';
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchRandomRecipe } from '../actions/recipeActions';
+import { fetchRecipeById } from '../../actions/recipe/recipeActions';
 
-const initialState: RandomRecipeState = {
+const initialState: RecipeState = {
   recipe: undefined,
   succeeded: false,
   loading: false,
@@ -18,13 +18,13 @@ const RandomRecipeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRandomRecipe.fulfilled, (state, action) => {
+      .addCase(fetchRecipeById.fulfilled, (state, action) => {
         state.recipe = action.payload;
         state.succeeded = true;
         state.loading = false;
       })
-      .addCase(fetchRandomRecipe.pending, handlePending)
-      .addCase(fetchRandomRecipe.rejected, handleReject);
+      .addCase(fetchRecipeById.pending, handlePending)
+      .addCase(fetchRecipeById.rejected, handleReject);
   },
 });
 

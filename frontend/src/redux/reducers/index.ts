@@ -1,10 +1,12 @@
 import { authReducer } from './authReducers';
 import { combineReducers } from '@reduxjs/toolkit';
 import notificationsReducers from './notificationsReducers';
-import recipesReducers from './recipesReducers';
+import randomRecipeReducers from './recipe/randomRecipeReducers';
+import recipeReducers from './recipe/recipeReducers';
 
 export default combineReducers({
   auth: authReducer,
   notifications: notificationsReducers,
-  randomRecipe: recipesReducers,
+  randomRecipe: randomRecipeReducers,
+  recipe: recipeReducers,
 });

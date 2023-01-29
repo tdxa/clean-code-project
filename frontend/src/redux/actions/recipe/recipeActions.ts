@@ -3,19 +3,21 @@ import instance, {
   ApiResponse,
   AsyncThunkConfig,
   isAxiosError,
-} from '../../api/axiosConfig';
-import { Recipe } from '../../api/recipeAPI';
+} from '../../../api/axiosConfig';
+import { Recipe } from '../../../api/recipeAPI';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { dispatchNotification } from '../../utils/redux';
-import { randomRecipeAPI } from '../../utils/paths';
+import { dispatchNotification } from '../../../utils/redux';
+import { recipeAPI } from '../../../utils/paths';
 
-export const fetchRandomRecipe = createAsyncThunk<
+export const fetchRecipeById = createAsyncThunk<
   ApiResponse<Recipe>,
-  undefined,
+  string,
   AsyncThunkConfig
->('recipe/random/get', async (_, thunkAPI) => {
+>('recipe/id/get', async (id, thunkAPI) => {
   try {
-    const response = await instance.get<ApiResponse<Recipe>>(randomRecipeAPI);
+    const response = await instance.get<ApiResponse<Recipe>>(
+      `${recipeAPI}/${id}`
+    );
 
     return response.data;
   } catch (err) {

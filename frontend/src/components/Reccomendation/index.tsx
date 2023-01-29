@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import {
   selectRandomRecipe,
-  selectRandomRecipeLoadings,
+  selectRandomRecipeLoading,
 } from '../../redux/selectors/recipeSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Common/Loader';
 import RecipePreview from './Recipe';
-import { fetchRandomRecipe } from '../../redux/actions/recipeActions';
+import { fetchRandomRecipe } from '../../redux/actions/recipe/randomRecipeActions';
 import { useIsMobile } from '../../utils';
 
 const ReccomendationRecipe: FC = () => {
@@ -14,7 +14,7 @@ const ReccomendationRecipe: FC = () => {
   const isMobile = useIsMobile();
 
   const recipe = useSelector(selectRandomRecipe);
-  const loading = useSelector(selectRandomRecipeLoadings);
+  const loading = useSelector(selectRandomRecipeLoading);
 
   useEffect(() => {
     if (!recipe) {
