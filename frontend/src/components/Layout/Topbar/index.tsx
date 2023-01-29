@@ -1,11 +1,8 @@
 import * as styles from '../layout.module.scss';
-import { IconButton, MenuItem } from '@mui/material';
+import { AppBar, IconButton, Toolbar } from '@mui/material';
 import React, { FC, useState } from 'react';
-import LoginModal from '../../Authentication/Login';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import PrimaryButton from '../../Common/Buttons/PrimaryButton';
-import RegisterModal from '../../Authentication/Register';
-import TertiaryButton from '../../Common/Buttons/TertiaryButton';
+import { drawerWidth } from '../utils';
 import { muiStylesLayout } from '../muiStylesLayout';
 import { useIsMobile } from '../../../utils';
 
@@ -21,44 +18,29 @@ const Topbar: FC<Props> = ({ handleDrawerToggle }) => {
 
   return (
     <>
-      <LoginModal
-        open={openLogin}
-        handleClose={() => setOpenLogin(false)}
-        redirect={() => setOpenRegister(true)}
-      />
-      <RegisterModal
-        open={openRegister}
-        handleClose={() => setOpenRegister(false)}
-        redirect={() => setOpenLogin(true)}
-      />
-      <div className={styles.topbarMain}>
-        {isMobile ? (
-          <div>
+      {isMobile && (
+        <AppBar
+          position='fixed'
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+            backgroundColor: '#fcf5ee',
+          }}
+        >
+          <Toolbar>
             <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              edge='start'
               onClick={handleDrawerToggle}
               sx={muiStylesLayout.iconMenu}
             >
               <MenuRoundedIcon />
             </IconButton>
-          </div>
-        ) : (
-          <>
-            <MenuItem>Strona główna</MenuItem>
-            <MenuItem>About</MenuItem>
-            <MenuItem>How it works</MenuItem>
-            <div className={styles.topbarButtons}>
-              <TertiaryButton
-                text='Zaloguj się'
-                event={() => setOpenLogin(true)}
-              />
-              <PrimaryButton
-                text='Zarejestruj się'
-                event={() => setOpenRegister(true)}
-              />
-            </div>
-          </>
-        )}
-      </div>
+            <h2 className={styles.topbarText}>Garnuszek</h2>
+          </Toolbar>
+        </AppBar>
+      )}
     </>
   );
 };

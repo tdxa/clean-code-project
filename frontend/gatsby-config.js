@@ -47,6 +47,22 @@ module.exports = {
         include: '/images/.*.svg/',
       },
     },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [
+          `https://fonts.googleapis.com`,
+          `https://fonts.gstatic.com`,
+        ],
+        web: [
+          {
+            name: `Odibee Sans`,
+            file: `https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap`,
+          },
+        ],
+      },
+    },
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

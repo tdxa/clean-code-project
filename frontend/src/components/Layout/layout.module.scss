@@ -1,4 +1,5 @@
 @use '../../styles/main';
+// @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .wrapper {
   width: inherit;
@@ -14,8 +15,22 @@
 }
 
 .topbar-logo {
-  height: 35px;
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  svg {
+    height: fit-content;
+    padding: 30px;
+  }
+}
+
+.topbar-text {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: 'Odibee Sans';
+  color: main.$primary-color;
 }
 
 .topbar-content {
@@ -40,14 +55,12 @@
 }
 
 .sidebar-container {
-  //@extend .sidebar-typography;
-  width: 250px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: main.$tertiary-color;
-  color: main.$font-color-secondary;
+  background-color: main.$secondary-color;
+  color: main.$font-color-primary;
 }
 
 .content {
@@ -75,7 +88,7 @@
 }
 
 .icon {
-  color: main.$font-color-secondary;
+  color: main.$font-color-primary;
 }
 
 @include main.min-width() {

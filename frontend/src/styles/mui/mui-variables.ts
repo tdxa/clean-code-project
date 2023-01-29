@@ -1,10 +1,10 @@
 // colors
-export const primaryColor = '#042A3E';
+export const primaryColor = '#729343';
 export const primaryColorHover = '#042A3E';
 export const primaryColorFocused = '#042A3E';
 export const primaryColorDisabled = '#053A55';
 
-export const secondaryColor = '#FAFAFA';
+export const secondaryColor = '#fcf5ee';
 export const secondaryColorHover = '#EBEBEB';
 export const secondaryColorFocused = '#EBEBEB';
 export const secondaryColorDisabled = '#ffffff';
@@ -14,7 +14,7 @@ export const tertiaryColorHover = '#084D70';
 export const tertiaryColorFocused = '#084D70';
 export const tertiaryColorDisabled = '#085B85';
 
-export const fontColorPrimary = '#053A55';
+export const fontColorPrimary = '#423424';
 export const fontColorSecondary = '#FAFAFA';
 export const fontColorInactive = 'rgba(17, 33, 64, 0.3)';
 

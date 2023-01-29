@@ -1,11 +1,15 @@
-import { primaryColor, secondaryColor } from '../../styles/mui/mui-variables';
+import { fontColorPrimary } from '../../styles/mui/mui-variables';
 
 export const muiStylesLayout = {
   iconMenu: {
-    color: primaryColor,
+    justifyContent: 'end',
+    svg: {
+      color: fontColorPrimary,
+      justifyContent: 'end',
+    },
   },
   iconItem: {
-    color: secondaryColor,
+    color: fontColorPrimary,
   },
   bottomItems: {
     bottom: 0,
