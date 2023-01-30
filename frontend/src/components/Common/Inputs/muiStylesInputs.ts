@@ -1,23 +1,23 @@
+import {
+  borderColor,
+  fontColorPrimary,
+} from '../../../styles/mui/mui-variables';
+
 export const commonFormBase = {
   input: {
     'width': '100%',
     'heigth': '56px',
     '& label': {
-      //   'color': inputBorder,
       '&.Mui-focused': {
-        // color: inputBorderFocused,
+        color: borderColor,
       },
     },
     '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        // borderColor: inputBorder,
-        // borderWidth: '2px',
-      },
-      '&:focus fieldset': {
-        // borderColor: inputBorderFocused,
-      },
       '&:hover fieldset': {
-        // borderColor: inputBorderHovered,
+        borderColor: borderColor,
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: borderColor,
       },
     },
   },
@@ -29,5 +29,16 @@ export const commonFormBase = {
 export const muiStylesFormInputs = {
   inputText: {
     ...commonFormBase.input,
+  },
+  checkboxWrapper: {
+    width: '100%',
+  },
+  inputCheckbox: {
+    '&.MuiCheckbox-root': {
+      'color': fontColorPrimary,
+      '&.Mui-checked, &.MuiCheckbox-indeterminate': {
+        color: fontColorPrimary,
+      },
+    },
   },
 };

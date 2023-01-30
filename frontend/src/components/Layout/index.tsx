@@ -3,7 +3,6 @@ import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import { drawerWidth } from './utils';
 import { useIsMobile } from '../../utils';
 
 interface Props {
@@ -24,8 +23,7 @@ const Layout: FC<Props> = ({ children }) => {
         display: 'flex',
         background: '#F9F9FB',
         flexGrow: 1,
-        p: 3,
-        width: { sm: `calc(100% - ${drawerWidth}px)` },
+        padding: '10px 10px 24px',
       }}
     >
       <Sidebar open={isSideBarOpen} toggleDrawer={handleToggleDrawer} />

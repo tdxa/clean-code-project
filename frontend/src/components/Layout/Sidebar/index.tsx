@@ -9,11 +9,7 @@ import {
   ListItemText,
 } from '@mui/material';
 import React, { FC } from 'react';
-import {
-  drawerWidth,
-  sideBarListBottomItems,
-  sideBarListUpperItems,
-} from '../utils';
+import { drawerWidth, sideBarListUpperItems } from '../utils';
 import CloseIcon from '@mui/icons-material/Close';
 import GarnuszekLogo from '../../../images/logo/logo-full-green.svg';
 import { muiStylesLayout } from '../muiStylesLayout';

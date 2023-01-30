@@ -1,21 +1,17 @@
-// import * as styles from './recipe.module.scss';
+import * as styles from './recipe.module.scss';
 import React, { FC } from 'react';
+import CookingSVG from '../../images/cooking.svg';
 import Ingredient from '../Ingredient';
+import { Link } from '@reach/router';
+import { Recipe } from '../../api/recipeAPI';
 import WhiteCard from '../Common/WhiteCard';
+import { recipePage } from '../../utils/paths';
 
-interface Recipe {
-  url: string;
-  name: string;
-  ingredients: string[];
-  nutritional_values: Record<string, any>;
-  preparation_method: string[];
-  tags: string[];
-}
 interface Props {
   recipe: Recipe;
 }
 
-const Recipe: FC<Props> = ({ recipe }) => {
+const RecipeBox: FC<Props> = ({ recipe }) => {
   const generateIngredients = () => {
     if (recipe.ingredients.length > 6) {
       const slicedIngredients = recipe.ingredients.slice(0, 5);
@@ -23,16 +19,18 @@ const Recipe: FC<Props> = ({ recipe }) => {
       return (
         <>
           {slicedIngredients.map((ingredient, index) => (
-            <Ingredient key={`ingredient-${index}`} name={ingredient} />
+            <Ingredient key={`ingredient-${index}`} name={ingredient[1]} />
           ))}
-          <div>+ {recipe.ingredients.length - 5} więcej</div>
+          <div className={styles.containerMore}>
+            + {recipe.ingredients.length - 5} więcej
+          </div>
         </>
       );
     } else {
       return (
         <>
           {recipe.ingredients.map((ingredient, index) => (
-            <Ingredient key={`ingredient-${index}`} name={ingredient} />
+            <Ingredient key={`ingredient-${index}`} name={ingredient[1]} />
           ))}
         </>
       );
@@ -41,10 +39,29 @@ const Recipe: FC<Props> = ({ recipe }) => {
 
   return (
     <WhiteCard>
-      <div>{recipe.name}</div>
-      <div>{generateIngredients()}</div>
+      <Link
+        to={`${recipePage}/${recipe._id}`}
+        style={{ textDecoration: 'none', color: 'inherit' }}
+      >
+        <div
+          className={styles.containerRecipe}
+          // onClick={() => handleNavigateToRecipePage(recipe._id)}
+          // role='button'
+        >
+          <div className={styles.containerTitle}>
+            <CookingSVG />
+            <div>
+              <h3>{recipe.name}</h3>
+              <p>{recipe.nutritional_values.calories}</p>
+            </div>
+          </div>
+          <div className={styles.containerIngredients}>
+            {generateIngredients()}
+          </div>
+        </div>
+      </Link>
     </WhiteCard>
   );
 };
 
-export default Recipe;
+export default RecipeBox;

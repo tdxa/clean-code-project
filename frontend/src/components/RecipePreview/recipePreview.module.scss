@@ -1,0 +1,44 @@
+.container {
+  width: 90%;
+  margin-top: 30px;
+}
+
+.container-recipe {
+  padding: 20px;
+}
+
+.container-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 15px;
+  svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.container-nutritional-values {
+  display: flex;
+  gap: 5%;
+}
+
+.container-details {
+  display: flex;
+  padding: 20px 0;
+  gap: 10px;
+}
+
+.container-ingredients {
+  width: 50%;
+  p {
+    overflow-wrap: break-word;
+  }
+}
+
+.container-preparation {
+  width: 50%;
+  p {
+    overflow-wrap: break-word;
+  }
+}

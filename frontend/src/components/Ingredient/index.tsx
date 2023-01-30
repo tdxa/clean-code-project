@@ -1,3 +1,4 @@
+import * as styles from './ingredient.module.scss';
 import React, { FC } from 'react';
 
 interface Props {
@@ -5,7 +6,7 @@ interface Props {
 }
 const Ingredient: FC<Props> = ({ name }) => {
   return (
-    <div>
+    <div className={styles.container}>
       <p>{name}</p>
     </div>
   );
