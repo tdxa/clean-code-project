@@ -12,7 +12,7 @@ const initialState: RecipeState = {
   errorDetails: undefined,
 };
 
-const RandomRecipeSlice = createSlice({
+const RecipeSlice = createSlice({
   name: 'randomRecipeSlice',
   initialState,
   reducers: {},
@@ -28,4 +28,4 @@ const RandomRecipeSlice = createSlice({
   },
 });
 
-export default RandomRecipeSlice.reducer;
+export default RecipeSlice.reducer;

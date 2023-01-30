@@ -1,28 +1,28 @@
 import * as styles from './recipePreview.module.scss';
 import React, { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import CookingSVG from '../../images/cooking.svg';
-import { Divider } from '@mui/material';
-import WhiteCard from '../Common/WhiteCard';
-import { fetchRecipeById } from '../../redux/actions/recipe/recipeActions';
 import {
   selectRecipeById,
   selectRecipeByIdLoading,
 } from '../../redux/selectors/recipeSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import CookingSVG from '../../images/cooking.svg';
+import { Divider } from '@mui/material';
 import Loader from '../Common/Loader';
-interface Props {
-  path: string;
-}
+import WhiteCard from '../Common/WhiteCard';
+import { fetchRecipeById } from '../../redux/actions/recipe/recipeActions';
 
-const RecipePreview: FC<Props> = ({ path }) => {
+interface Props {
+  id: string;
+}
+const RecipePreview: FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
 
   const recipe = useSelector(selectRecipeById);
   const loading = useSelector(selectRecipeByIdLoading);
 
   useEffect(() => {
-    dispatch(fetchRecipeById(path));
-  }, [dispatch, path]);
+    dispatch(fetchRecipeById(id));
+  }, [dispatch, id]);
 
   return (
     <>
@@ -68,6 +68,13 @@ const RecipePreview: FC<Props> = ({ path }) => {
                     ))}
                   </div>
                 </div>
+              </div>
+              <Divider />
+              <div>
+                <h3>Kategorie</h3>
+                {recipe.tags.map((tag, index) => (
+                  <div key={index}>{tag}</div>
+                ))}
               </div>
             </div>
           </WhiteCard>

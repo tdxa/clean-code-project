@@ -2,10 +2,10 @@ import * as styles from './recipe.module.scss';
 import React, { FC } from 'react';
 import CookingSVG from '../../../images/cooking.svg';
 import Ingredient from '../Ingredient';
+import { Link } from '@reach/router';
 import { Recipe } from '../../../api/recipeAPI';
 import WhiteCard from '../../Common/WhiteCard';
-import { handleNavigateToRecipePage, recipePage } from '../../../utils/paths';
-import { Link } from '@reach/router';
+import { recipePage } from '../../../utils/paths';
 
 interface Props {
   recipe: Recipe;
@@ -39,7 +39,10 @@ const RecipePreview: FC<Props> = ({ recipe }) => {
 
   return (
     <WhiteCard>
-      <Link to={`${recipePage}/${recipe._id}`}>
+      <Link
+        to={`${recipePage}/${recipe._id}`}
+        style={{ textDecoration: 'none', color: 'inherit' }}
+      >
         <div
           className={styles.containerRecipe}
           // onClick={() => handleNavigateToRecipePage(recipe._id)}

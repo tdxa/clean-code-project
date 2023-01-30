@@ -1,15 +1,14 @@
-import React, { FC } from 'react';
 import Layout from '../../components/Layout';
+import React from 'react';
 import RecipePreview from '../../components/RecipePreview';
 import Seo from '../../components/seo';
 
-const RecipePage: FC = (props) => {
-  console.log(props);
+const RecipePage = (props: { params: { id: string } }) => {
   return (
     <>
-      <Seo title='Home' />
+      <Seo title='Przepis' />
       <Layout>
-        <RecipePreview />
+        <RecipePreview id={props.params.id} />
       </Layout>
     </>
   );

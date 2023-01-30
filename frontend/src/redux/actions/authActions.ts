@@ -7,7 +7,6 @@ import client, {
 import { LoginData } from '../../components/Authentication/types';
 import { User } from '../../api/userAPI';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { dispatchNotification } from '../../utils/redux';
 import { loginAPI } from '../../utils/paths';
 
 // export const logout = createAsyncThunk<undefined, undefined, AsyncThunkConfig>(
@@ -47,7 +46,7 @@ export const login = createAsyncThunk<
 
       return thunkAPI.rejectWithValue(extractedError);
     }
-    dispatchNotification('error');
+
     throw error;
   }
 });

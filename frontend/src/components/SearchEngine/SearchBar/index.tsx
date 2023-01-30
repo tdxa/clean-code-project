@@ -20,7 +20,6 @@ const SearchBar: FC = () => {
       <FiltresModal
         open={openFiltres}
         handleClose={() => setOpenFiltres(false)}
-        control={methods.control}
       />
       <FormProvider {...methods}>
         <form
