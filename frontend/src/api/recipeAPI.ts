@@ -23,7 +23,8 @@ export interface RecipeState extends BaseApiState {
   recipe?: Recipe;
 }
 export interface RecipesState extends BaseApiState {
-  recipes?: Recipe[];
+  recipesTag?: Recipe[];
+  recipesName?: Recipe;
 }
 
 export interface TagsState extends BaseApiState {

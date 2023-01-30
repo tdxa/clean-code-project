@@ -62,7 +62,7 @@ const FormInputMultiCheckbox: FC<FormInputOptionsMultiCheckboxProps> = ({
               />
             }
             label={option.label}
-            key={`form-checkbox-option-${option.value as string}`}
+            key={`form-checkbox-option-${option.value}`}
           />
         ))}
       </div>

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import {
   selectRecipeByTag,
-  selectRecipeByTagLoading,
+  selectRecipeaLoading,
 } from '../../redux/selectors/recipeSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Common/Loader';
@@ -16,7 +16,7 @@ const RecipeList: FC<Props> = ({ category }) => {
   const dispatch = useDispatch();
 
   const recipes = useSelector(selectRecipeByTag);
-  const loading = useSelector(selectRecipeByTagLoading);
+  const loading = useSelector(selectRecipeaLoading);
 
   useEffect(() => {
     dispatch(fetchRecipeByTag(category));
