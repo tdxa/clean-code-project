@@ -22,3 +22,8 @@ export interface Recipe {
 export interface RecipeState extends BaseApiState {
   recipe?: Recipe;
 }
+
+export interface TagsState extends BaseApiState {
+  tags?: string[];
+  filtres?: string[];
+}

@@ -13,7 +13,7 @@ const initialState: RecipeState = {
 };
 
 const RecipeSlice = createSlice({
-  name: 'randomRecipeSlice',
+  name: 'recipeSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

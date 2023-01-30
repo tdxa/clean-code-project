@@ -1,4 +1,7 @@
-import { borderColor } from '../../../styles/mui/mui-variables';
+import {
+  borderColor,
+  fontColorPrimary,
+} from '../../../styles/mui/mui-variables';
 
 export const commonFormBase = {
   input: {
@@ -26,5 +29,16 @@ export const commonFormBase = {
 export const muiStylesFormInputs = {
   inputText: {
     ...commonFormBase.input,
+  },
+  checkboxWrapper: {
+    width: '100%',
+  },
+  inputCheckbox: {
+    '&.MuiCheckbox-root': {
+      'color': fontColorPrimary,
+      '&.Mui-checked, &.MuiCheckbox-indeterminate': {
+        color: fontColorPrimary,
+      },
+    },
   },
 };
