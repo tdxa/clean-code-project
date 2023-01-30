@@ -1,17 +1,17 @@
 import * as styles from './recipe.module.scss';
 import React, { FC } from 'react';
-import CookingSVG from '../../../images/cooking.svg';
+import CookingSVG from '../../images/cooking.svg';
 import Ingredient from '../Ingredient';
 import { Link } from '@reach/router';
-import { Recipe } from '../../../api/recipeAPI';
-import WhiteCard from '../../Common/WhiteCard';
-import { recipePage } from '../../../utils/paths';
+import { Recipe } from '../../api/recipeAPI';
+import WhiteCard from '../Common/WhiteCard';
+import { recipePage } from '../../utils/paths';
 
 interface Props {
   recipe: Recipe;
 }
 
-const RecipePreview: FC<Props> = ({ recipe }) => {
+const RecipeBox: FC<Props> = ({ recipe }) => {
   const generateIngredients = () => {
     if (recipe.ingredients.length > 6) {
       const slicedIngredients = recipe.ingredients.slice(0, 5);
@@ -64,4 +64,4 @@ const RecipePreview: FC<Props> = ({ recipe }) => {
   );
 };
 
-export default RecipePreview;
+export default RecipeBox;

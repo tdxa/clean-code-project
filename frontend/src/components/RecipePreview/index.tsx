@@ -49,7 +49,7 @@ const RecipePreview: FC<Props> = ({ id }) => {
               </div>
               <Divider />
               <div className={styles.containerDetails}>
-                <div>
+                <div className={styles.containerIngredients}>
                   <h3>Składniki</h3>
                   {recipe.ingredients.map((ingredients, index) =>
                     index > 0 ? (

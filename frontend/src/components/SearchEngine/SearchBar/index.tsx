@@ -1,26 +1,18 @@
 import * as styles from '../search.module.scss';
 import { FormProvider, useForm } from 'react-hook-form';
-import React, { FC, useState } from 'react';
-import FiltresModal from '../FiltresModal';
+import React, { FC } from 'react';
 import { InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import SecondaryButton from '../../Common/Buttons/SecondaryButton';
 import TextField from '@mui/material/TextField';
 import { muiStylesSearch } from '../muiStylesSearch';
 
 const SearchBar: FC = () => {
-  const [openFiltres, setOpenFiltres] = useState(false);
-
   const methods = useForm({});
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data: string) => console.log(data);
 
   return (
     <>
-      <FiltresModal
-        open={openFiltres}
-        handleClose={() => setOpenFiltres(false)}
-      />
       <FormProvider {...methods}>
         <form
           className={styles.searchBarForm}
@@ -39,7 +31,6 @@ const SearchBar: FC = () => {
             variant='outlined'
             placeholder='Szukaj przepisu'
           />
-          <SecondaryButton text='Filtry' event={() => setOpenFiltres(true)} />
         </form>
       </FormProvider>
     </>

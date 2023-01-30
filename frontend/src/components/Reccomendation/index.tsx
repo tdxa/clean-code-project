@@ -5,7 +5,7 @@ import {
 } from '../../redux/selectors/recipeSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Common/Loader';
-import RecipePreview from './Recipe';
+import RecipeBox from '../Recipe';
 import { fetchRandomRecipe } from '../../redux/actions/recipe/randomRecipeActions';
 import { useIsMobile } from '../../utils';
 
@@ -33,7 +33,7 @@ const ReccomendationRecipe: FC = () => {
           ) : (
             <h1>A może dzisiaj spróbujesz...</h1>
           )}
-          <RecipePreview recipe={recipe} />
+          <RecipeBox recipe={recipe} />
         </div>
       )}
     </>
